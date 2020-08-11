@@ -47,19 +47,19 @@ ansible all -a uptime
 #### ***3) How to check the free memory or memory usage of  hosts using ansible ad hoc command***
 
 ```
-ansible multi -a "free -m" -i ansible_hosts
+ansible all -a "free -m" -i ansible_hosts
 ```
 
 #### ***4) ansible ad hoc command to get physical memory allocated to the host***
 
 ```
-ansible multi -m shell -a "cat /proc/meminfo|head -2" 
+ansible all -m shell -a "cat /proc/meminfo|head -2" 
 ```
  
 #### ***5) ansible ad hoc command Execute a command as root user (sudo) on host***
  
 ```
-ansible multi -m shell -a "cat /etc/passwd|grep -i vagrant" -b --ask-sudo-pass
+ansible multi -m shell -a "cat /etc/passwd|grep -i devops" -b --ask-sudo-pass
 ```
 
 #### ***6) ansible ad hoc command to Execute a command as a different user  (sudo su)***
@@ -101,23 +101,23 @@ ansible app -m file -a "path=/opt/oracle group=weblogic owner=weblogic" -i ansib
 #### ***12) how to check free disk space of hosts using ansible ad hoc commands***
 
 ```
-ansible multi -a "df -h"
+ansible all -a "df -h"
 ```
  
 #### ***13) ad hoc command to Install a package using yum command***
 
 ```
-ansible multi -s -m yum -a "name=httpd state=installed"
+ansible web -b -m yum -a "name=httpd state=installed"
 ```
  
 #### ***14) ad hoc command to Start or stop the service***
 
 ```
 # To Start
-ansible multi -s -m service -a "name=httod state=started enabled=yes"
+ansible multi -b -m service -a "name=httod state=started enabled=yes"
 
 # To Stop
-ansible multi -s -m service -a "name=httpd state=stop enabled=yes"
+ansible multi -b -m service -a "name=httpd state=stop enabled=yes"
 ```
 
 #### ***15) Install and configure python Django application server with ansible ad hoc commands***
@@ -125,9 +125,9 @@ ansible multi -s -m service -a "name=httpd state=stop enabled=yes"
 * These are set of commands you have to execute to install the Django application server and Mysql libraries. Here we are using easy_install which is an ansible module it helps to find the easy installation option from ansible galaxy
 
 ```
-ansible app -s -m yum -a "name=MySQL-python state=present"
-ansible app -s -m yum -a "name=python-setuptools state=present"
-ansible app -s -m easy_install -a "name=django"
+ansible app -b -m yum -a "name=MySQL-python state=present"
+ansible app -b -m yum -a "name=python-setuptools state=present"
+ansible app -b -m easy_install -a "name=django"
 ```
 
 #### ***16) Managing Cron Job and Scheduling with Ansible ad hoc***
@@ -135,23 +135,23 @@ ansible app -s -m easy_install -a "name=django"
 ```
 ##Run the job every 15 minutes
 
-ansible multi -s -m cron -a "name='daily-cron-all-servers' minute=*/15 job='/path/to/minute-script.sh'"
+ansible multi -b -m cron -a "name='daily-cron-all-servers' minute=*/15 job='/path/to/minute-script.sh'"
 
 ##Run the job every four hours
 
-ansible multi -s -m cron -a "name='daily-cron-all-servers' hour=4 job='/path/to/hour-script.sh'"
+ansible multi -b -m cron -a "name='daily-cron-all-servers' hour=4 job='/path/to/hour-script.sh'"
 
 ##Enabling a Job to run at system reboot
 
-ansible multi -s -m cron -a "name='daily-cron-all-servers' special_time=reboot job='/path/to/startup-script.sh'"
+ansible multi -b -m cron -a "name='daily-cron-all-servers' special_time=reboot job='/path/to/startup-script.sh'"
 
 ##Scheduling a Daily job
 
-ansible multi -s -m cron -a "name='daily-cron-all-servers' special_time=daily job='/path/to/daily-script.sh'"
+ansible multi -b -m cron -a "name='daily-cron-all-servers' special_time=daily job='/path/to/daily-script.sh'"
 
 ##Scheduling a Weekly job
 
-ansible multi -s -m cron -a "name='daily-cron-all-servers' special_time=weekly job='/path/to/daily-script.sh'"
+ansible multi -b -m cron -a "name='daily-cron-all-servers' special_time=weekly job='/path/to/daily-script.sh'"
 ```
  
 #### ***17) Running operations in the background asynchronous with Polling ansible***
@@ -160,8 +160,8 @@ ansible multi -s -m cron -a "name='daily-cron-all-servers' special_time=weekly j
 * ansible ad-hoc command  to perform yum update and frequently poll and check the status of the job
 
 ```
-ansible multi -s -B 3600 -a "yum -y update"
-ansible multi -m async_status -a "jid=763350539037"
+ansible all -b -B 3600 -a "yum -y update"
+ansible all -m async_status -a "jid=763350539037"
 ```
 
 * By Default the polling interval is 10 seconds, but can modify it using -P option
