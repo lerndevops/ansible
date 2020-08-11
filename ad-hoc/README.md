@@ -15,21 +15,22 @@
 
 ## `Ansible ad_hoc commands Syntax` 
 
-[ad-hoc](https://github.com/lerndevops/ansible/blob/master/static/ad-hoc-syntax.PNG)
+![ad-hoc-syntax](https://github.com/lerndevops/ansible/blob/master/static/ad-hoc-syntax.PNG)
 
 ## ***below are real-time examples of ansible ad hoc commands*** 
 
-### ***Ansible Ad Hoc Command Examples ***
+#### ***Ansible Ad Hoc Command Examples***
 
-### ***We presume that you have set up SSH key based auth between the control machine and the hosts. If yes then there is no need to enter the credentials and command would be simple***
+#### ***We presume that you have set up SSH key based auth between the control machine and the hosts. If yes then there is no need to enter the credentials and command would be simple***
+
 
 > Validate the connection between Ansible control machine and host using ansible ping module
 
 ```
-ansible multi -m ping -i ansible_hosts --user=vagrant   -- when SSH Keys Configured 
+ansible all -m ping -i ansible_hosts --user=devops   -- when SSH Keys Configured 
 ```
 ```
-ansible multi -m ping -i ansible_hosts --user=vagrant --ask-pass  -- when NO SSH keys Configured 
+ansible all -m ping -i ansible_hosts --user=devops --ask-pass  -- when NO SSH keys Configured 
 ```
 
 > Get the uptime of remote hosts using ansible ad hoc command
