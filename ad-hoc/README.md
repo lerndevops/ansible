@@ -22,7 +22,7 @@
 #### ***We presume that you have set up SSH key based auth between the control machine and the hosts. If yes then there is no need to enter the credentials and command would be simple***
 
 
-1) `Validate the connection between Ansible control machine and host using ansible ping module`
+#### ***Validate the connection between Ansible control machine and host using ansible ping module***
 
 ```
 ansible all -m ping -i ansible_hosts --user=devops   -- when SSH Keys Configured 
@@ -31,7 +31,7 @@ ansible all -m ping -i ansible_hosts --user=devops   -- when SSH Keys Configured
 ansible all -m ping -i ansible_hosts --user=devops --ask-pass  -- when NO SSH keys Configured 
 ```
 
-2) `Get the uptime of remote hosts using ansible ad hoc command`
+#### ***Get the uptime of remote hosts using ansible ad hoc command***
 
      * Ansible provides two major modules to run the command over the host group or on the remote server.
 
@@ -45,73 +45,73 @@ ansible all -m shell -a uptime
 ansible all -a uptime 
 ```
 
-3) `How to check the free memory or memory usage of  hosts using ansible ad hoc command`
+#### ***How to check the free memory or memory usage of  hosts using ansible ad hoc command***
 
 ```
 ansible multi -a "free -m" -i ansible_hosts
 ```
 
-4) `ansible ad hoc command to get physical memory allocated to the host`
+#### ***ansible ad hoc command to get physical memory allocated to the host***
 
 ```
 ansible multi -m shell -a "cat /proc/meminfo|head -2" 
 ```
  
-5) `ansible ad hoc command Execute a command as root user (sudo) on host`
+#### ***ansible ad hoc command Execute a command as root user (sudo) on host***
  
 ```
 ansible multi -m shell -a "cat /etc/passwd|grep -i vagrant" -b --ask-sudo-pass
 ```
 
-6) `ansible ad hoc command to Execute a command as a different user  (sudo su)`
+#### ***ansible ad hoc command to Execute a command as a different user  (sudo su)***
 
 ```
 ansible app -m file -a "path=/opt/oracle/binaries state=directory mode=0755" -i ansible_hosts -b --become-user=weblogic
 ```
  
-7) `Create a unix user group with ansible ad hoc command`
+#### ***Create a unix user group with ansible ad hoc command***
 
 ```
 ansible app -b -m group -a "name=weblogic state=present" 
 ```
  
-8) `Create a unix user with ansible ad hoc command`
+#### ***Create a unix user with ansible ad hoc command***
 
 ```
 ansible app -m user -a "name=weblogic group=weblogic createhome=yes" -b
 ```
  
-9) `Create a Directory with 755 permission using ansible ad hoc command`
+#### ***Create a Directory with 755 permission using ansible ad hoc command***
 
 ```
 ansible app -m file -a "path=/opt/oracle state=directory mode=0755" -b
 ```
 
-10) `Create a file with 755 permission using ansible ad hoc commands`
+#### ***Create a file with 755 permission using ansible ad hoc commands***
 
 ```
 ansible app -m file -a "path=/tmp/testfile state=touch mode=0755"
 ```
  
-11) `Change ownership of a file using ansible ad hoc command`
+#### ***Change ownership of a file using ansible ad hoc command***
 
 ```
 ansible app -m file -a "path=/opt/oracle group=weblogic owner=weblogic" -i ansible_hosts -b
 ```
 
-12) `how to check free disk space of hosts using ansible ad hoc commands`
+#### ***how to check free disk space of hosts using ansible ad hoc commands***
 
 ```
 ansible multi -a "df -h"
 ```
  
-13) `ad hoc command to Install a package using yum command`
+#### ***ad hoc command to Install a package using yum command***
 
 ```
 ansible multi -s -m yum -a "name=httpd state=installed"
 ```
  
-14) `ad hoc command to Start or stop the service`
+#### ***ad hoc command to Start or stop the service***
 
 ```
 # To Start
@@ -121,7 +121,7 @@ ansible multi -s -m service -a "name=httod state=started enabled=yes"
 ansible multi -s -m service -a "name=httpd state=stop enabled=yes"
 ```
 
-15) `Install and configure python Django application server with ansible ad hoc commands`
+#### ***Install and configure python Django application server with ansible ad hoc commands***
 
     * These are set of commands you have to execute to install the Django application server and Mysql libraries. Here we are using easy_install which is an ansible module it helps to find the easy installation option from ansible galaxy
 
@@ -131,10 +131,9 @@ ansible app -s -m yum -a "name=python-setuptools state=present"
 ansible app -s -m easy_install -a "name=django"
 ```
 
-16) `Managing Cron Job and Scheduling with Ansible ad hoc`
+#### ***Managing Cron Job and Scheduling with Ansible ad hoc***
 
 ```
-
 ##Run the job every 15 minutes
 
 ansible multi -s -m cron -a "name='daily-cron-all-servers' minute=*/15 job='/path/to/minute-script.sh'"
@@ -154,22 +153,21 @@ ansible multi -s -m cron -a "name='daily-cron-all-servers' special_time=daily jo
 ##Scheduling a Weekly job
 
 ansible multi -s -m cron -a "name='daily-cron-all-servers' special_time=weekly job='/path/to/daily-script.sh'"
-
 ```
  
-17) `Running operations in the background asynchronous with Polling ansible`
+#### ***Running operations in the background asynchronous with Polling ansible***
 
-     * You can use AD-HOC commands to run the operations background using -B and poll the job in the frequent interval -P
-     * ansible ad-hoc command  to perform yum update and frequently poll and check the status of the job
+    * You can use AD-HOC commands to run the operations background using -B and poll the job in the frequent interval -P
+    * ansible ad-hoc command  to perform yum update and frequently poll and check the status of the job
 
 ```
 ansible multi -s -B 3600 -a "yum -y update"
 ansible multi -m async_status -a "jid=763350539037"
 ```
 
-     * By Default the polling interval is 10 seconds, but can modify it using -P option
-     * If you set -P as 0 it called as fire and forget, The job id would not be given and you cannot track the job using async_status as shown above.
-	 
-	 * Rebooting the host in the background is the best example for fire and forget
-	 
-	 `ansible all -i inventory -b -B 1 -P 0 -m shell -a "sleep 5 && reboot"`
+    * By Default the polling interval is 10 seconds, but can modify it using -P option
+    * If you set -P as 0 it called as fire and forget, The job id would not be given and you cannot track the job using async_status as shown above.
+    * Rebooting the host in the background is the best example for fire and forget
+```
+ansible all -i inventory -b -B 1 -P 0 -m shell -a "sleep 5 && reboot"
+```
