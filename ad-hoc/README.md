@@ -33,9 +33,9 @@ ansible all -m ping -i ansible_hosts --user=devops --ask-pass  -- when NO SSH ke
 
 2) `Get the uptime of remote hosts using ansible ad hoc command`
 
-* Ansible provides two major modules to run the command over the host group or on the remote server.
+     * Ansible provides two major modules to run the command over the host group or on the remote server.
 
-* Which one to pick is not a big confusion if you know what are they and their capabilities
+     * Which one to pick is not a big confusion if you know what are they and their capabilities
 
 ```
 ansible all -m command -a uptime
