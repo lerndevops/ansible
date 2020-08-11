@@ -13,8 +13,6 @@
 3. Ping and validate if the server is alive and responds
 4. shutdown multiple remote hosts at a single command
 
-## `Ansible ad_hoc commands Syntax` 
-
 ![ad-hoc-syntax](https://github.com/lerndevops/ansible/blob/master/static/ad-hoc-syntax.PNG)
 
 ## ***below are real-time examples of ansible ad hoc commands*** 
@@ -24,7 +22,7 @@
 #### ***We presume that you have set up SSH key based auth between the control machine and the hosts. If yes then there is no need to enter the credentials and command would be simple***
 
 
-> Validate the connection between Ansible control machine and host using ansible ping module
+1) Validate the connection between Ansible control machine and host using ansible ping module
 
 ```
 ansible all -m ping -i ansible_hosts --user=devops   -- when SSH Keys Configured 
@@ -33,7 +31,7 @@ ansible all -m ping -i ansible_hosts --user=devops   -- when SSH Keys Configured
 ansible all -m ping -i ansible_hosts --user=devops --ask-pass  -- when NO SSH keys Configured 
 ```
 
-> Get the uptime of remote hosts using ansible ad hoc command
+2) Get the uptime of remote hosts using ansible ad hoc command
 
 > How to check the free memory or memory usage of  hosts using ansible ad hoc command
 
