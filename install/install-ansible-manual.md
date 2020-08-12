@@ -28,16 +28,19 @@
 
 ##### Download the packages to your home system or PC.
 
-### `Step 3.` Push the packages to the Linux instance using ftp.
+### `Step 3.` Push the packages to the Linux instance using ftp/winscp
 
 ### `Step 4.` Install the packages as following.
 
 > After sending the packages to the linux instance using ftp. Make a directory and save all the above downloaded packages into that directory. Run the below commands to install ansible locally on the linux vm.
 ```
-$sudo mkdir ansibleinstallation
-$sudo mv abovepackages.tar /ansibleinstallation
-$sudo yum localinstall -y python-crypto2.6–2.6.1–2.el6.x86_64.rpm python-httplib2–0.7.41.el6.art.noarch.rpm python-jinja2–26–2.6–3.el6.noarch.rpm python-keyczar-0.71c 1.el6.noarch.rpm sshpass-1.05–5.el6.art.x86_64.rpm
-$ sudo yum localinstall ansible*
+$  sudo mkdir ansibleinstallation
+
+$  sudo mv abovepackages.tar /ansibleinstallation
+
+$  sudo yum localinstall -y python-crypto2.6–2.6.1–2.el6.x86_64.rpm python-httplib2–0.7.41.el6.art.noarch.rpm python-jinja2–26–2.6–3.el6.noarch.rpm python-keyczar-0.71c1.el6.noarch.rpm sshpass-1.05–5.el6.art.x86_64.rpm
+
+$  sudo yum localinstall ansible*
 ```
 
 ### `Step 5.` Installation of Ansible as above comes with no hosts file and no configuration file.
@@ -45,11 +48,9 @@ $ sudo yum localinstall ansible*
 > Manually create the hosts or inventory file and configuration file as required.
 
 ```
-#mkdir /etc/ansible
-#cd ansible
-#vi ansible/hosts ###use as inventory file
-#vi /etc/ansible/ansible.cfg
-
-Use the below link to copy the ansible.cfg and save your file.
-https://raw.githubusercontent.com/ansible/ansible/devel/examples/ansible.cfg
+#  mkdir /etc/ansible
+#  cd /etc/ansible
+#  vi hosts ###use as inventory file
+#  vi /etc/ansible/ansible.cfg
 ```
+#### get the default ansible.cfg file and save your file using [link_to_ansible.cfg](https://raw.githubusercontent.com/ansible/ansible/devel/examples/ansible.cfg)
