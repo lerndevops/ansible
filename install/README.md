@@ -1,13 +1,33 @@
 ## Prerequisites
 
-   1) PyYAML: a YAML parser and emitter for the python programming language.
+   1) `PyYAML:` a YAML parser and emitter for the python programming language.
      
-   2) Httplib2: a comprehensive HTTP client library.
+   2) `Httplib2:` a comprehensive HTTP client library.
      
-   3) parmiko: native python SSHv2 protocol library.
+   3) `parmiko:` native python SSHv2 protocol library.
     
-   4) Distro: RHEL/ CentOS/ Debian/ Ubuntu Linux.
+   4) `Distro:` RHEL/ CentOS/ Debian/ Ubuntu Linux.
      
-   5) Jinja2: a modern and designer friendly templating language for python.
+   5) `Jinja2:` a modern and designer friendly templating language for python.
      
-   6) sshpass: a non-interactive ssh password authentication.
+   6) `sshpass:` a non-interactive ssh password authentication.
+
+## Install Ansible on Debian/Ubuntu systems
+
+##### Step 1: First perform an update to the packages
+```
+$ sudo apt update
+```
+##### Step 2: Then install the software properties common package.
+```
+$ sudo apt install software-properties-common  
+```
+##### Step 3: And install the Ansible personal package archive.
+```
+$ sudo apt-add-repository ppa:ansible/ansible  
+```
+##### Step 4: Install the Ansible.
+```
+$ sudo apt update  
+$ sudo apt install ansible  
+```
