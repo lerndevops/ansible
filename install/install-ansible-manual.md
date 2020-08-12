@@ -16,7 +16,7 @@
 
 > Download the below mentioned packages to install ansible on centos or rhel vm. Save the packages after download on system or PC.
 
-![python-crypto](https://www.rpmfind.net/linux/rpm2html/search.php?query=python-crypto)
+[python-crypto!](https://www.rpmfind.net/linux/rpm2html/search.php?query=python-crypto)
 
 ![python-httplib](https://www.rpmfind.net/linux/rpm2html/search.php?query=python-httplib&submit=Search+...&system=&arch=)
 
