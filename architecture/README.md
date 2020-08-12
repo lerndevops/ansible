@@ -24,31 +24,17 @@
 
 | Terms | Explnation | 
 | :-------- | :---------------- |
-
 | Ansible server | The machine where Ansible is installed and from which all tasks and playbooks will be ran |
-
 | Inventory | File containing data about the ansible client servers. Defined in later examples as hosts file |
-
 | Module | Basically, a module is a command or set of similar commands meant to be executed on the client-side |
-
 | Task | A task is a section that consists of a single procedure to be completed |
-
 | Handler | Task which is called only if a notifier is present |
-
 | Notifier | Section attributed to a task which calls a handler if the output is changed |
-
 | Tag | Name set to a task which can be used later on to issue just that specific task or group of tasks. |
-
 | Play | Execution of a playbook |
-
 | Playbooks | Playbooks consist of your written code, and they are written in YAML format, which describes the tasks and executes through the Ansible. Also, you can launch the tasks synchronously and asynchronously with playbooks.|
-
 | Fact | Information fetched from the client system from the global variables with the gather-facts operation |
-
 | Role | A way of organizing tasks and related files to be later called in a playbook |
-
 | Plugins | Plugins is a piece of code that expends the core functionality of Ansible. There are many useful plugins, and you also can write your own |
-
 | API's | The Ansible API's works as the transport for the public or private cloud services |
-
 | CMDB | CMDB is a type of repository which acts as a data warehouse for the IT installations |
