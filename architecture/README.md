@@ -6,7 +6,7 @@
  
 ##### Ansible works by connecting to your nodes and pushing out small programs, called "Ansible modules" to them. These programs are written to be resource models of the desired state of the system. Ansible then executes these modules, and removes them when finished.
 
-![Ansible Arch](https://github.com/lerndevops/ansible/blob/master/static/Architecture2.PNG)
+<p align="center"> <img src="https://github.com/lerndevops/ansible/blob/master/static/Architecture2.PNG"> </p>
 
 
 ##### `Ansible` is purely written in `Python` and all things will execute on Python interpreter.
