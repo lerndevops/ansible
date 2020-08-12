@@ -31,3 +31,15 @@ $ sudo apt-add-repository ppa:ansible/ansible
 $ sudo apt update  
 $ sudo apt install ansible  
 ```
+
+## Install Ansible on RedHat/Centos systems
+
+##### Step 1: Install the EPEL repo
+```
+[root@ansible-server ~]# sudo yum install epel-release
+```
+
+##### Step 2: Install the Ansible package.
+```
+[root@ansible-server ~]# sudo yum install -y ansible  
+```
