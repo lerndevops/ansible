@@ -16,9 +16,7 @@
 
 ## Ansible Connectivity to remote servers
 
-##### Ansible uses SSH for the communication over SSH channel to get information from the remote machines, to run commands on the remote machines and to copy files.
- 
-##### Ansible uses SSH for Linux and winrm for windows and there is no need to set up additional software at the target machine and we know SSH comes by default in Linux servers and winrm by default in windows servers.
+##### Ansible uses `SSH` for Linux and `WINRM` for windows and there is no need to set up additional software at the target machine and we know SSH comes by default in Linux servers and winrm by default in windows servers.
 
 ![Connectivity](https://github.com/lerndevops/ansible/blob/master/static/Connectivity.PNG)
 
