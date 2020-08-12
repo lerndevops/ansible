@@ -8,15 +8,15 @@
 3) parmiko: Native Python SSHv2 protocol library.
 4) httplib2: A comprehensive HTTP client library.
 
-## `Step 1.` Take a Linux instance from AWS EC2/Google Compute Engine.
+### `Step 1.` Take a Linux instance from AWS EC2/Google Compute Engine.
 
 > Create a instance in your private VPN and connect it using putty or any such ssh client using the pem or ppk key.
 
-## `Step 2.` Download the necessary packages offline to your system or PC.
+### `Step 2.` Download the necessary packages offline to your system or PC.
 
 > Download the below mentioned packages to install ansible on centos or rhel vm. Save the packages after download on system or PC.
 
-***![python-crypto](https://www.rpmfind.net/linux/rpm2html/search.php?query=python-crypto)***
+![python-crypto](https://www.rpmfind.net/linux/rpm2html/search.php?query=python-crypto)
 
 ![python-httplib](https://www.rpmfind.net/linux/rpm2html/search.php?query=python-httplib&submit=Search+...&system=&arch=)
 
@@ -28,9 +28,9 @@
 
 ##### Download the packages to your home system or PC.
 
-## `Step 3.` Push the packages to the Linux instance using ftp.
+### `Step 3.` Push the packages to the Linux instance using ftp.
 
-## `Step 4.` Install the packages as following.
+### `Step 4.` Install the packages as following.
 
 > After sending the packages to the linux instance using ftp. Make a directory and save all the above downloaded packages into that directory. Run the below commands to install ansible locally on the linux vm.
 ```
@@ -40,7 +40,7 @@ $sudo yum localinstall -y python-crypto2.6–2.6.1–2.el6.x86_64.rpm python-htt
 $ sudo yum localinstall ansible*
 ```
 
-## `Step 5.` Installation of Ansible as above comes with no hosts file and no configuration file.
+### `Step 5.` Installation of Ansible as above comes with no hosts file and no configuration file.
 
 > Manually create the hosts or inventory file and configuration file as required.
 
