@@ -17,20 +17,20 @@
 ```
 #### Step 1: First perform an update to the packages
 
-      $ sudo apt update
+      sudo apt update
 
 #### Step 2: Then install the software properties common package.
 
-      $ sudo apt install software-properties-common  
+      sudo apt install software-properties-common  
 
 #### Step 3: And install the Ansible personal package archive.
 
-      $ sudo apt-add-repository ppa:ansible/ansible  
+      sudo apt-add-repository ppa:ansible/ansible  
 
 #### Step 4: Install the Ansible.
 
-      $ sudo apt update  
-      $ sudo apt install ansible  
+      sudo apt update  
+      sudo apt install ansible  
 ```
 
 ## Install Ansible on RedHat/Centos systems
@@ -38,9 +38,9 @@
 ```
 #### Step 1: Install the EPEL repo
 
-   [root@ansible-server ~]# sudo yum install epel-release
+   sudo yum install epel-release
 
 #### Step 2: Install the Ansible package.
 
-   [root@ansible-server ~]# sudo yum install -y ansible  
+   sudo yum install -y ansible  
 ```
