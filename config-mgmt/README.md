@@ -52,10 +52,15 @@ such as:
 ## Benefits of configuration and change management for servers
 
 1. It helps to maintain the consistency of the servers.
+
 2. It increases efficiency since most of the processes are automated as opposed to manual processes.
+
 3. It makes it easy to scale infrastructure without having to scale staff since the processes are automated.
+
 4. It reduces the chances of errors since most of the processes are automated and do not require human interference.
+
 5. It saves cost for staffing and repair of the server in the case of failure and the need to repair or set up the server again manually.
+
 6. It ensures that the server can be easily brought back up in case of system downtime since there is a baseline for the server configurations and a record of all changes reports for the server.
 
 ## Tools for configuration management
