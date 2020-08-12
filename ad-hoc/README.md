@@ -13,7 +13,7 @@
 3. Ping and validate if the server is alive and responds
 4. shutdown multiple remote hosts at a single command
 
-![ad-hoc-syntax](https://github.com/lerndevops/ansible/blob/master/static/ad-hoc-syntax.PNG)
+<p align="center"> <img src="https://github.com/lerndevops/ansible/blob/master/static/ad-hoc-syntax.PNG"> </p>
 
 ## ***below are real-time examples of ansible ad hoc commands*** 
 
