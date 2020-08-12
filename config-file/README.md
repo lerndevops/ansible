@@ -14,8 +14,50 @@
 
 ##### Ansible has many configuration parameters; you might not need to use all of them. We can consider some of the configuration parameters, as follows, and see how to use them:
 
-1) **`hostfile:` This parameter indicates the path to the inventory file. The inventory file consists of a list of hosts that Ansible can connect to. We will discuss inventory files in detail later in this chapter. Consider the following command line for example:**
+1) **`hostfile:` This parameter indicates the path to the inventory file. The inventory file consists of a list of hosts that Ansible can connect to. We will discuss inventory files in detail later in this chapter. the following line for example:**
 
 ```
 hostfile = /etc/ansible/hosts
+```
+
+2) **`library:` Whenever you ask Ansible to perform any action, whether it is a local action or a remote one, it uses a piece of code to perform the action; this piece of code is called a module. The library parameter points to the path of the directory where Ansible modules are stored. the following line for example:**
+
+```
+library = /usr/share/ansible
+```
+
+3) **`forks:` This parameter is the default number of processes that you want Ansible to spawn. It defaults to five maximum processes in parallel. Consider the following command line for example:**
+
+```
+forks = 5
+```
+
+4) **`sudo_user:` This parameter specifies the default user that should be used against the issued commands. You can override this parameter from the Ansible playbook as well (this is covered in a later chapter). Consider the following command line for example:**
+
+```
+sudo_user = root
+```
+
+5) **`remote_port:` This parameter is used to specify the port used for SSH connections, which defaults to 22. You might never need to change this value unless you are using SSH on a different port. Consider the following command line for example:**
+
+```
+remote_port = 22
+```
+
+6) **`host_key_checking:` This parameter is used to disable the SSH host key checking; this is set to True by default. Consider the following command line for example:
+
+```
+host_key_checking = False
+```
+
+7) **`timeout:` This is the default value for the timeout of SSH connection attempts:**
+
+```
+timeout = 60
+```
+
+8) **`log_path:` By default, Ansible doesn't log anything; if you would like to send the Ansible output to a logfile, then set the value of log_path to the file you would like to store the Ansible logs in. Consider the following command line for example:**
+
+```
+log_path = /var/log/ansible.log
 ```
