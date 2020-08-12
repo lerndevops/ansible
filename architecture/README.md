@@ -11,14 +11,14 @@
 
 ##### `Ansible` is purely written in `Python` and all things will execute on Python interpreter.
 
-![Ansible Arch1](https://github.com/lerndevops/ansible/blob/master/static/Architecture1.PNG)
+<p align="center"> <img src="https://github.com/lerndevops/ansible/blob/master/static/Architecture1.PNG"> </p>
 
 
 ## Ansible Connectivity to remote servers
 
 ##### Ansible uses `SSH` for Linux and `WINRM` for windows and there is no need to set up additional software at the target machine and we know SSH comes by default in Linux servers and winrm by default in windows servers.
 
-![Connectivity](https://github.com/lerndevops/ansible/blob/master/static/Connectivity.PNG)
+<p align="center"> <img src="https://github.com/lerndevops/ansible/blob/master/static/Connectivity.PNG"> </p>
 
 
 
