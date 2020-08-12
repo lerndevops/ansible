@@ -9,3 +9,13 @@
 ##### If you have installed Ansible through your `system's package manager OR pip`, then you should already have a copy of `ansible.cfg` under the `/etc/ansible directory`. 
 
 ##### If you installed Ansible through the `GitHub repository`, you can find `ansible.cfg` under the `examples directory`, where you cloned your Ansible repository.
+
+## Configuration using ansible.cfg
+
+##### Ansible has many configuration parameters; you might not need to use all of them. We can consider some of the configuration parameters, as follows, and see how to use them:
+
+1) **`hostfile:` This parameter indicates the path to the inventory file. The inventory file consists of a list of hosts that Ansible can connect to. We will discuss inventory files in detail later in this chapter. Consider the following command line for example:**
+
+```
+hostfile = /etc/ansible/hosts
+```
