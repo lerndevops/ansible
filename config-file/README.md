@@ -44,7 +44,7 @@ sudo_user = root
 remote_port = 22
 ```
 
-6) **`host_key_checking:` This parameter is used to disable the SSH host key checking; this is set to True by default. Consider the following command line for example:
+6) **`host_key_checking:` This parameter is used to disable the SSH host key checking; this is set to True by default. Consider the following command line for example:**
 
 ```
 host_key_checking = False
