@@ -15,7 +15,7 @@
 ![Connectivity](https://github.com/lerndevops/ansible/blob/master/static/Connectivity.PNG)
 
 
-### Ansible has a very simple architecture as they believe in simplicity. Its main components are Inventory, Playbook, and modules
+## Ansible has a very simple architecture
 
 1) `Inventory`: is a text file where we save the host information that we want to manage using Ansible. The default location of the inventory file is /etc/ansible/hosts.
 
