@@ -100,3 +100,28 @@ db005
 app
 db
 ```
+
+## Regular expressions with an inventory file
+
+##### An inventory file would be very helpful if you have many servers. Let's say you have a large number of web servers that follow the same naming convention, 
+
+##### for example, `web001`, `web002`, …, `web00N`, and so on. Listing all these servers separately will result in a dirty inventory file, which would be difficult to manage with hundreds to thousands of lines. 
+
+##### To deal with such situations, Ansible allows you to use `regex` inside its inventory file. The following shows an example of multiple servers:
+
+```
+$ cat hosts
+[app]
+www.example.com
+web[001:200]
+
+[db]
+db[001:020]
+
+[jump]
+192.168.2.[1:3]
+
+```
+
+From the preceding example, we can deduce the following:
+
