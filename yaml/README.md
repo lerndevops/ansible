@@ -1,12 +1,14 @@
-## Introduction  
+## YAML Introduction  
 
 > **YAML is a human-readable data serialization standard that can be used in conjunction with all programming languages and is often used to write configuration files**
 
-> **YAML stands for "YAML Ain't Markup Language" (YAML) is a data serialization language that has steadily increased in popularity over the last few years.**
+> **YAML stands for `YAML Ain't Markup Language` (YAML) is a data serialization language that has steadily increased in popularity over the last few years.**
 
 > **It is less complex and ungainly than XML or JSON, but provides similar capabilities. It essentially allows you to provide powerful configuration settings, without having to learn a more complex code type like CSS, JavaScript, and PHP.**
 
 > **YAML is built from the ground up to be simple to use. At its core, a YAML file is used to describe data. One of the benefits of using YAML is that the information in a single YAML file can be easily translated to multiple language types.**
+
+> **There’s another small quirk to YAML. All YAML files (regardless of their association with Ansible or not) can optionally begin with `---` and end with `...` This is part of the YAML format and indicates the start and end of a document.**
 
 
 ## YAML Basic Rules
@@ -18,15 +20,16 @@
 
 2. YAML is case sensitive.
 
-3. YAML files should end in .yaml / .yml
+3. YAML files can end in .yaml / .yml 
 
-## Basic Data Types
+
+## Basic Data Types used in YAML
 
 > YAML excels at working with `mappings` (hashes / dictionaries), `sequences` (arrays / lists), and `scalars` (strings / numbers). 
 
 > it can be used with most programming languages, it works best with languages that are built around these data structure types. This includes: PHP, Python, Perl, JavaScript, and Ruby.
 
-### Scalars
+### `Scalars`
 
 ##### Scalars are a pretty basic concept. They are the strings and numbers that make up the data on the page. A scalar could be a boolean property, like `Yes`, integer (number) such as 5, or a string of text, like a sentence or the title of your website.
 
@@ -41,7 +44,7 @@ float: 25.0
 boolean: Yes
 ```
 
-### Sequences
+### `Sequences`
 
 ##### Here is a simple sequence. It is a basic list with each item in the list placed in its own line with an opening dash.
 
@@ -76,7 +79,7 @@ boolean: Yes
 
 ##### Sequences can be added to other data structure types, such as mappings or scalars.
 
-### Mappings
+### `Mappings`
 
 ##### Mapping gives you the ability to list keys with values. This is useful in cases where you are assigning a name or a property to a specific element.
 
@@ -92,3 +95,40 @@ pets:
  - Dog
  - Goldfish
 ```
+
+```
+# An employee record
+martin:
+    name: Martin D'vloper
+    job: Developer
+    skill: Elite
+```
+
+##### More complicated data structures are possible, such as lists of dictionaries, dictionaries whose values are lists or a mix of both:
+
+```
+# Employee records
+-  martin:
+    name: Martin D'vloper
+    job: Developer
+    skills:
+      - python
+      - perl
+      - pascal
+-  tabitha:
+    name: Tabitha Bitumen
+    job: Developer
+    skills:
+      - lisp
+      - fortran
+      - erlang
+```
+
+##### Dictionaries and lists can also be represented in an abbreviated form if you really want to: `These are called “Flow collections”.`
+
+```
+martin: {name: Martin D'vloper, job: Developer, skill: Elite}
+fruits: ['Apple', 'Orange', 'Strawberry', 'Mango']
+```
+
+
