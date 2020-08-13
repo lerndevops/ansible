@@ -125,3 +125,4 @@ db[001:020]
 
 From the preceding example, we can deduce the following:
 
+![inv-regex](https://github.com/lerndevops/ansible/blob/master/static/inv-regex.PNG)
