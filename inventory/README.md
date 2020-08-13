@@ -38,9 +38,7 @@ ansible all -i hosts -m ping
 
 ##### The above command will spawn off four parallel processes, one for each machine. The default number of parallel threads is five. For a larger number of hosts, you can increase the number of parallel processes with the `-f` or `--forks=< value >` option.
 
-<span style="background-color: #FFFF00">Marked text</span>
-
-##### <span style="background-color: #FFFF00"> Coming back to the features of the file, one of the drawbacks with this type of simple inventory file is that you cannot run your `ansible` tasks against a subset of the `hosts`, that is, if you want to run ansible against `two of the hosts`, then you can't do that with above shown inventory file.</span>
+<span style="background-color: #FFFF00"> Coming back to the features of the file, one of the drawbacks with this type of simple inventory file is that you cannot run your ansible tasks against a subset of the `hosts`, that is, if you want to run ansible against two of the hosts, then you can't do that with above shown inventory file </span>
 
 ##### To deal with such a situation, Ansible provides a way to `group` your hosts and run Ansible against that group.
 
