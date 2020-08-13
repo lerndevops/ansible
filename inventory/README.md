@@ -75,3 +75,28 @@ ansible app -i hosts -m ping
 ##### You can still run Ansible against a single host by directly passing the `hostname` or against all the hosts by passing `all` to them.
 
 ## Groups of groups
+
+##### Grouping is a good way to run Ansible on multiple hosts together. Ansible provides a way to further group multiple groups together. 
+
+##### For example, let's say, you have multiple application and `database` servers running in the `east coast` and these are grouped as application and db. 
+
+##### You can then create a master group called `eastcoast`. Using this command, you can run Ansible on your entire `eastcoast` data center instead of running it on all groups one by one.
+
+##### Let's take a look at an example shown below 
+
+```
+$ cat hosts
+[app]
+www.example.com
+web001
+
+[db]
+db005
+
+[jump]
+192.168.198.146
+
+[eastcoast:children]
+app
+db
+```
