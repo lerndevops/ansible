@@ -68,22 +68,23 @@ fi
 
 update_conf()
 {
-   sudofile="/etc/sudoers"
+   sudodir="/etc/sudoers.d"
    sshdfile="/etc/ssh/sshd_config"
    mkdir -p /home/backup
-   if [ -f $sudofile ];then
-        cp -p $sudofile /home/backup/sudoers-$now
-        sa=`grep $USER $sudofile | wc -l`
-        if [ $sa -gt 0 ];then
-             echo "$USER user already present in $sudofile - no changes required"
-             grep $USER $sudofile
-        else
-#             echo "$USER ALL=(ALL) ALL" >> $sudofile
-             echo "$USER ALL=(ALL) NOPASSWD: ALL" >> $sudofile
-             echo "updated the sudoers file successfully"
-        fi
+   if [ -d $sudodir ];then
+	echo -e "$USER ALL=(ALL) ALL" >> "$sudodir/$USER"
+        #cp -p $sudofile /home/backup/sudoers-$now
+        #sa=`grep $USER $sudofile | wc -l`
+        #if [ $sa -gt 0 ];then
+        #     echo "$USER user already present in $sudofile - no changes required"
+        #     grep $USER $sudofile
+        #else
+        #     echo "$USER ALL=(ALL) ALL" >> $sudofile
+#       #      echo "$USER ALL=(ALL) NOPASSWD: ALL" >> $sudofile
+        #     echo "updated the sudoers file successfully"
+        #fi
    else
-        echo "could not find $sudofile"
+        echo "could not find $sudodir"
    fi
 
    if [ -f $sshdfile ];then
@@ -107,7 +108,7 @@ update_conf()
 
 USER="devops"
 GROUP="devops"
-passw="devops@1234"
+passw="today@1234"
 
 if [ -f /etc/os-release ];then
    osname=`grep ID /etc/os-release | egrep -v 'VERSION|LIKE|VARIANT' | cut -d'=' -f2 | sed -e 's/"//' -e 's/"//'`
