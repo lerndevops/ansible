@@ -4,7 +4,7 @@
 
 ### add user to sudoers for root previliges  on all machines ( all targets )
 
-	echo -e 'ansiblebot  ALL=(ALL:ALL) ALL' > /etc/sudoers.d/ansiblebot
+	echo -e 'ansiblebot  ALL=(ALL)  NOPASSWD:  ALL' > /etc/sudoers.d/ansiblebot
 
 ### genereate ssh keys for above user on contrller machine 
 
