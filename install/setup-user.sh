@@ -91,9 +91,10 @@ update_conf()
         cp -p $sshdfile /home/backup/sshd_config-$now
         sed -i '/ClientAliveInterval.*0/d' $sshdfile
         sed -i '/PermitRootLogin.*yes/d' $sshdfile
+	sed -i '/PermitRootLogin.*no/d' $sshdfile
+        sed -i '/PermitRootLogin.*prohibit-password/d' $sshdfile
         sed -i '/PasswordAuthentication.*no/d' $sshdfile
         sed -i '/PasswordAuthentication.*yes/d' $sshdfile
-        sed -i '/PermitRootLogin.*prohibit-password/d' $sshdfile
         echo "PermitRootLogin yes" >> $sshdfile
         echo "PasswordAuthentication yes" >> $sshdfile
         echo "ClientAliveInterval 240" >> $sshdfile
