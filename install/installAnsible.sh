@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -f /etc/os-release ];then
-   osname=`grep ID /etc/os-release | egrep -v 'VERSION|LIKE|VARIANT' | cut -d'=' -f2 | sed -e 's/"//' -e 's/"//'`
+   osname=`grep ID /etc/os-release | egrep -v 'PLATFORM|VERSION|LIKE|VARIANT' | cut -d'=' -f2 | sed -e 's/"//' -e 's/"//'`
    echo $osname
 else
    echo "can not locate /etc/os-release - unable find the osname"
@@ -26,7 +26,7 @@ elif [ $osname == "amzn" ]; then
   sudo yum install -y ansible  
   echo "`ansible --version | head -1` installed Successfully"
 
-elif [ $1 == "centos" ];then
+elif [ $osname == "centos" ];then
 
   clear
   echo "No ansible installation found -- proceeding with ansible installation..."
