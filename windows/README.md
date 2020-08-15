@@ -37,7 +37,7 @@ Get-Service WinRM
 
 > if winrm is not enabled or not running use below script to enable it. 
 
-1) copy the script [ConfigureRemotingForAnsible](https://raw.githubusercontent.com/lerndevops/labs/master/ansible/windows/ConfigureRemotingForAnsible.ps1) to windows hosts
+1) copy the script [ConfigureRemotingForAnsible](https://github.com/lerndevops/ansible/blob/master/windows/ConfigureRemotingForAnsible.ps1) to windows hosts
 2) open powershell as administrator
 3) run the script .\ConfigureRemotingForAnsible.ps1
 
