@@ -25,7 +25,7 @@
 		   swith to the user ( su - ansiblebot )
 		   mkdir -p /home/ansiblebot/.ssh
 		   touch /home/ansiblebot/.ssh/authorized_keys
-		   chmod 600 /home/ansiblebot/.ssh/authorized_keys
+		   chmod -R 700 /home/ansiblebot/.ssh
 		   vi /home/ansiblebot/.ssh/authorized_keys  (enter the copied contet of id_rsa.pub from controller & save the file)
 ```	
 	
