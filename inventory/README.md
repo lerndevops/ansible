@@ -4,6 +4,8 @@
 
 > **It follows the INI format and tells Ansible whether the remote host or hosts provided by the user are genuine or not.**
 
+> **`An INI file is a configuration file for computer software that consists of a text-based content with a structure and syntax comprising key-value pairs for properties, and sections that organize the properties.`**
+
 > **Ansible can run its tasks against multiple hosts in parallel. To do this, you can directly pass the list of hosts to Ansible using an inventory file.**
 
 > **Ansible allows you to group your hosts in the inventory file; the file passes the group name to Ansible. Ansible will search for that group in the inventory file and run its tasks against all the hosts listed in that group.**
