@@ -1,0 +1,4 @@
+- hosts: localhost
+  tasks:
+    - name: Collect only facts returned by facter
+      setup:

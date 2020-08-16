@@ -1,0 +1,25 @@
+# You can also copy folders/directories using Ansible copy module. If the ‘src’ path is a directory, it will be copied recursively. That means the entire directory is copied.
+
+# Now, there are two different variations for this. Depending on whether you have the ‘/’ character at the end of the ‘src’ path or not.
+
+# The first method will create a directory on the remote server, with the name set in the src parameter. And then it will copy and paste the contents of the source folder to that directory. If you want this behaviour, then don‘t give the ‘/’ after the path in the src parameter.
+#
+
+- hosts: all
+  become: yes
+  tasks:
+  - name: Ansible copy directory to the remote server
+    copy:
+      src: /etc 
+      dest: /tmp
+
+## The second method will copy only the files from the source directory to the remote server. It will not create a directory on the remote server. If you want this behaviour, then give the ‘/’ after the path in the src parameter.
+#
+
+- hosts: all
+  become: yes
+  tasks:
+  - name: Ansible copy directory to the remote server
+    copy:
+      src: /etc/
+      dest: /tmp

@@ -1,0 +1,42 @@
+# Ansible’s shell module executes shell commands on remote hosts. By default, the shell module uses the /bin/sh shell to execute commands, but it’s possible to use other shells such as /bin/bash by passing the executable argument.
+
+- hosts: all
+  become: yes
+  tasks:
+    shell: echo "Hello, World!" > $HOME/test_file.txt
+
+- hosts: all
+  become: yes
+  tasks:
+    - name: read all text files in $HOME with the /bin/bash shell
+      shell: cat < $HOME/*.txt
+      args:
+        executable: /bin/bash
+    - name: create a text file in $HOME only if it doesn't already exist
+      shell: echo "Hello, World!" > $HOME/test_file.txt
+      args:
+        creates: "$HOME/test_file.txt"
+    - name: remove a text file in $HOME only if it already exists
+      shell: rm $HOME/test_file.txt
+      args:
+        removes: "$HOME/test_file.txt"
+    - name: create a text file in $HOME by using chdir
+      shell: echo "Hello, World!" > test_file.txt
+      args:
+        chdir: $HOME
+    - name: precompile assets with asdf in $PATH and $RAILS_ENV set to production
+      shell: "rails assets:precompile"
+      args:
+        chdir: $HOME/my_app
+       environment:
+         PATH: "$HOME/.asdf/bin:$HOME/.asdf/shims:{{ ansible_env.PATH }}"
+         RAILS_ENV: production
+    - name: read all text files in $HOME with the /bin/bash shell
+      shell: cat < $HOME/*.txt
+      args:
+        executable: /bin/bash
+    - name: create a text file in $HOME with the /bin/sh shell & Shell module output
+      shell: echo "Hello, World!" > $HOME/test_file.txt
+      register: shell_output
+
+    - debug: var=shell_output

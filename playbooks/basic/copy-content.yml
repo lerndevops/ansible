@@ -1,0 +1,11 @@
+# You can also write to a file using the contents parameter in Ansible copy module. The following example will write the values given to the content parameter to the check4.txt file.
+
+- hosts: all
+  tasks:
+  - name: Ansible write to a file example
+    copy:
+      content: |
+        Content parameter example.
+        Check4.txt will be created after this task is executed.
+      dest: /Users/mdtutorials2/Documents/Ansible/check4.txt
+      backup: yes

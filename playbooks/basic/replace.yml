@@ -1,0 +1,22 @@
+# We can easily replace a word with another word using the Ansible ‘replace’ module.
+
+# In case the word does not exist in the file then no error will be thrown. It will just return the status as not changed.
+
+- hosts: all
+  tasks:
+  - name: Ansible replace string example
+    replace:
+      path: /tmp/intext.txt
+      regexp: 'hello'    ## word to match in target file    
+      replace: "world"   ## word to replace in target file
+
+# If you need to do a case-insensitive search then you can do something like below.  The ‘?i’ means it is a case sensitive replace.
+
+# Also, we can remove a specific string by not setting the ‘replace’ parameter. This will just remove the string. 
+
+- hosts: all
+  tasks:
+  - name: Ansible remove words example
+    replace:
+      path: "/tmp/intext.txt"
+      regexp: "dog"  ## word to remove in target file

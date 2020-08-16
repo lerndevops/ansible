@@ -1,0 +1,28 @@
+---
+# create group, user 
+
+- hosts: web
+  gather_facts: no
+  tasks:
+  - name: Create devops group
+    group:
+      name: devops
+      state: present
+
+  - name: create user1 
+    user:
+      name: user1
+
+---
+# Change Primary Group of User: or Change The Group of User
+
+- hosts: localhost
+  gather_facts: no
+  tasks:
+
+  - name: Change the group of user
+    user:
+      name: user1
+      group: hadoop
+
+      

@@ -1,0 +1,28 @@
+## copy the sample.txt file in the home directory of the current user( on controller), to the /tmp directory on the remote server.
+
+- hosts: all
+  tasks:
+  - name: Ansible copy file to remote server
+    copy:
+      src: ~/sample.txt  
+      dest: /tmp
+
+## If the file is already present on the remote server and if the source file’s content is different, then on running the task, the destination file will be modified. You can control this by setting the force parameter. The default is set to yes’. So it modifies the file by default. If you don’t want the file to be modified if the source file is different, then you can set it to ‘No’. The following task will only copy the file if the file does not exist on the remote server.
+
+- hosts: all
+  tasks:
+  - name: Ansible copy file force
+    copy:
+      src: ~/sample.txt
+      dest: /tmp 
+      force: no
+
+## Ansible copy module provides a ‘backup’ parameter just for that. If the remote file exists and if it is different from the file which is copied, then a new file will be created. The new file will be named by appending the timestamp and the original file name. The default value is ‘no’ for the backup parameter.
+
+- hosts: all
+  tasks:
+  - name: ansible copy file backup example
+    copy:
+      src: ~/helloworld.txt
+      dest: /tmp
+      backup: yes

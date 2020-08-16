@@ -1,0 +1,10 @@
+# Copying all the files inside a folder that matches a pattern(wildcard)
+
+- hosts: all
+  tasks:
+  - name: Ansible copy multiple files with wildcard matching.
+    copy:
+      src: "{{ item }}"
+      dest: /etc
+    with_fileglob:
+      - /tmp/hello*

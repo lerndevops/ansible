@@ -1,0 +1,29 @@
+# we can Create an empty file using the file module. You just need to set two parmaters.
+#
+- hosts: all
+  tasks:
+  - name: Ansible create file if it doesn't exist example
+    file:
+      path: "/tmp"
+      state: touch
+      mode: '0644'
+      owner: devops
+      group: devops
+
+# One way is to create an empty file using the above method and then using the "blockinfile" or "lineinfile" module to add content to it.
+
+# But an easier method is to use the Ansible copy module to create a new file with content inside.
+
+# Note: If the file already exists then the module would check for the contents of that file. And if the contents are same then nothing happens. But if the content is different then the file will be overwritten. So do not use this on an existing file unless necessary.
+
+# we can Create an empty directory using the file module.
+#
+- hosts: all
+  tasks:
+  - name: Ansible create file if it doesn't exist example
+    file:
+      path: "/tmp/deloitte-dir"
+      state: directory
+      mode: '0644'
+      owner: devops
+      group: devops

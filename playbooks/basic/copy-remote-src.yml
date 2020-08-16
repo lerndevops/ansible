@@ -1,0 +1,10 @@
+# You can also copy files between the various locations on the remote servers. You have to set the remote_src parameter to yes.
+#
+- hosts: all
+  become: yes
+  tasks:
+  - name: Ansible copy files remote server src to remote server dest
+    copy:
+      src: /tmp/hello6
+      dest: /etc
+      remote_src: yes

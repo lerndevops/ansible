@@ -1,0 +1,43 @@
+# we can also copy the files from remote servers to the local machine. This can be done using the Ansible fetch module. This is useful when you want to copy some log files from the remote servers to your local machine.
+
+# By default, a directory named after each host you are connecting will be created in your destination directory(local machine). The fetched files will be copied there. If the file doesn’t exist on the remote server, no error will be thrown by default.
+
+# In the following example, I am running the task on remote-server-1. The file will be copied into /etc/remote-server-1/tmp directory of the local machine.
+
+- hosts: all
+  become: yes
+  tasks:
+  - name: Ansible fetch files from remote server to the local machine using Ansible fetch module
+    fetch:
+      src: /tmp/hello2
+      dest: /opt
+      mode: 0774
+
+# If you don’t want this behavior and you need the file to be copied directly to the destination directory, then you should use the ‘flat’ parameter.
+
+- hosts: all
+  become: yes
+  tasks:
+  - name: Ansible fetch directory example with flat parameter set
+    fetch:
+      src: /tmp/hello2
+      dest: /tmp
+      mode: 0774
+      flat: yes
+
+# Note 1: If you use flat parameter and the file name is not unique the existing file will be replaced every time the file is fetched.
+
+# Note 2: If you want an error to be thrown if the source file is missing, then set the ‘fail_on_missing’ parameter to yes. The following example will throw an error if the remote file does not exist.
+
+- hosts: all
+  tasks:
+  - name: Ansible fetch example with fail_on_missing set
+    fetch:
+      src: /tmp/fetch.txt
+      dest: /tmp/
+      mode: 0774
+      fail_on_missing: yes
+
+# Note 1: If you are trying to set the destination path to a directory, put a ‘\’ at the end of the path. Else Ansible will run the task as if the destination path is a file and try to replace it. You might get the following error.
+
+# fatal: [remote-machine-1]: FAILED! => {“failed”: true, “msg”: “Failed to fetch the file: [Errno 21] Is a directory: ‘/tmp'”}
