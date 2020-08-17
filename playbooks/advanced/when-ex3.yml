@@ -1,0 +1,35 @@
+#  ansible appservers -m shell -a "mkdir -p /var/tmp/filerepo && cd /var/tmp/filerepo && touch file.txt file1.txt file2.txt file3.txt file4.txt" -i ansible_hosts
+
+# ansible appservers -m shell -a "ls -lrt /var/tmp/filerepo" -i ansible_hosts 
+
+# without modified time: ansible-playbook FindOldfiles.yml -i ansible_hosts -e "Directory=/var/tmp/filerepo" -e "SearchString=*.txt"
+
+# with modfied time: ansible-playbook FindOldfiles.yml -i ansible_hosts -e "Directory=/var/tmp/filerepo" -e "SearchString=*.txt" -e "mtime=10"
+---
+ - name: Find files - Playbook
+   hosts: appservers
+   tasks:
+
+   # Case1:  when Search String and Modified time is mentioned
+   - name:  Find command with *SEARCH STRING* and *MODIFIED TIME*
+     shell: "find {{Directory}} -name '{{SearchString}}' -mtime '{{mtime}}'"
+     register: case1output
+     when: Directory is defined and SearchString is defined and mtime is defined
+     ignore_errors: true
+
+   # Case2: when Only Search String is mentioend but NOT Modified time(age)
+   - name:  Find command with only with *SEARCH STRING*
+     shell: "find {{Directory}} -name '{{SearchString}}' "
+     register: case2output
+     when: Directory is defined and SearchString is defined and mtime is not defined
+     ignore_errors: true
+
+   # In case of Case1 Success
+   - name: Case1 Output -- Output will be displayed only if Case is Success (or) it will be skipped
+     debug: var=case1output.stdout_lines
+     when: case1output.stdout_lines is defined
+
+   # In case of Case2 Success
+   - name: Case2 Output -- Output will be displayed only if Case is Success (or) it will be skipped
+     debug: var=case2output.stdout_lines
+     when: case2output.stdout_lines is defined

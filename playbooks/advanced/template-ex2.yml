@@ -1,0 +1,17 @@
+# ansible-playbook template-ex1.yaml -e "DIR=/apps/Tomcat FILEEXT=*.log DAYSOLD=30"
+---
+- name: Template Example
+  hosts: hostgroup1
+  tasks:
+   - name: Template module to interpolate variables and copy the file
+     template:
+       src: ../scritps/find.sh
+       dest: /tmp/find.sh
+       mode: 0755
+        
+   - name: Execute the script
+     become: true
+     shell: /tmp/find.sh
+     register: scroutput
+          
+   - debug: var=scroutput.stdout_lines

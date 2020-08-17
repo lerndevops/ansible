@@ -1,0 +1,46 @@
+---
+- name: Ansible Find Example
+  hosts: all
+  vars:
+    Files: []
+  tasks:
+   - name : Find files bigger than 100mb in size
+     become: true
+     find:
+       paths: /var/log
+       file_type: directory
+       recurse: no
+       excludes: 'nginx,mysql'
+     register: output
+
+   - name: Adding Files to the LIST
+     no_log: true
+     set_fact:
+       Files: "{{ Files + [item.path]}}"
+     with_items: "{{ output.files }}"
+
+   - debug: var=Files
+ 
+---
+- name: Ansible Find Example
+  hosts: all
+  vars:
+    Files: []
+  tasks:
+   - name : Find files bigger than 100mb in size
+     become: true
+     find:
+       paths: /var/log
+       file_type: file
+       patterns:  '^[a-z]*_[0-9]{8}\.log$'
+       size: 100m
+       use_regex: yes
+     register: output
+
+   - name: Adding Files to the LIST
+     no_log: true
+     set_fact:
+       Files: "{{ Files + [item.path]}}" 
+     with_items: "{{ output.files }}"
+
+   - debug: var=Files

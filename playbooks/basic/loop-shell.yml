@@ -1,0 +1,32 @@
+# Use the loop keyword to run shell multiple times in a loop. Make sure you use quote to sanitize variables and prevent unexpected behavior.
+
+# How to capture shell module output from a loop
+
+# When using the shell module in a loop, the output of each item in the loop will go into the results key of the registered variable.
+
+- hosts: all
+  become: yes
+  tasks:
+    - name: create a text file in $HOME with the /bin/sh shell
+      shell: echo "Hello, World!" > $HOME/test_file_{{ item | quote }}.txt
+      register: shell_output
+      loop:
+        - 1
+        - 2
+    - debug: var=shell_output
+
+---
+- name: run shell commands
+  hosts: all
+  gather_facts: false
+  vars:
+    commands_to_run:
+      - uptime | cut -d "," -f1 | awk '{print $2,$3,$4}'
+      - df -Ph | awk '0+$5 > 90 {print;}'| awk '{print $5,$6}'
+  tasks:
+    - name: run shell command
+      shell: "{{ item }}"
+      loop: "{{ commands_to_run }}"
+      register: shell_output
+
+    - debug: var=shell_output      

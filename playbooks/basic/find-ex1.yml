@@ -1,0 +1,28 @@
+---
+- name: Ansible Find Example
+  hosts: all
+  tasks:
+   - name : Find files older than 30 days
+     find:
+       paths: /var/log
+       patterns: '*.log'
+       age: 30d
+       age_stamp: mtime
+     register: output
+
+   - debug: var=item.path
+     with_items: "{{ output.files }}"
+
+---
+- name: Ansible Find Example
+  hosts: all 
+  tasks:
+   - name : Find files with age of less than 30 days
+     find:
+       paths: /var/log
+       patterns: '*.log'
+       age: -30d
+     register: output
+
+   - debug: var=item.path
+     with_items: "{{ output.files }}"

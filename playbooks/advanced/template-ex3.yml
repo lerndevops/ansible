@@ -1,0 +1,23 @@
+- hosts: all 
+  vars:
+    list1: ['Template iterate','Template loop','Template item']
+  tasks:
+    - name: Ansible template loop example.
+    - template:
+        src: templates_example2.j2
+        dest: /home/ansiblebot/output.txt
+        mode: 0777
+
+---
+
+- hosts: all
+  tasks:
+    - name: Ansible template with_items example.
+      template:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        mode: 0777
+      with_items:
+        - {src: 'ex1.j2', dest: '/home/ansiblebot/ex1_out.txt'}
+        - {src: 'ex2.j2', dest: '/home/ansiblebot/ex2_out.txt'}
+        - {src: 'ex3.j2', dest: '/home/ansiblebot/ex3_out.txt'}

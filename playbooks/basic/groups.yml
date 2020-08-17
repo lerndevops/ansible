@@ -1,0 +1,30 @@
+---
+# create group
+
+- hosts: web
+  gather_facts: no
+  tasks:
+  - name: Create devops group
+    group:
+      name: devops
+      state: present
+
+---
+# Change Primary Group of User: or Change The Group of User
+
+- hosts: localhost
+  gather_facts: no
+  tasks:
+  - name: create weblogic group 
+    group:
+      name: weblogic
+      state: present
+
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+  - name: Change oracle group 
+    group:
+      name: oracle
+      state: present

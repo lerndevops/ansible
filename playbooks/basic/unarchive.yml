@@ -1,0 +1,15 @@
+- host: all
+  tasks:
+   - name: Extract tomcat.tgz into /usr/tomcat/
+     unarchive:
+       src: tomcat.tgz
+       dest: /usr/tomcat
+       creates: /usr/tomcat
+
+   - name: Unarchive a file that is already on the remote machine
+     unarchive:
+       src: /tmp/tomcat.tgz
+       dest: /usr/local/bin
+       remote_src: yes
+       creates: /usr/local/tomcat
+

@@ -1,0 +1,120 @@
+# Validate if a line is present in the file without any modification
+---
+  - name: Examples of lineinfile
+    hosts: web
+    tasks:
+      - name: "Example1: Validate if a String or line is present in the file"
+        become: yes
+        become_user: root
+        lineinfile:
+          path: /etc/httpd/conf/httpd.conf
+          line: "LogLevel debug"
+          state: present
+          backup: yes
+        check_mode: yes
+        register: example1out
+
+
+# Validate if a String or line is present in the file and add if it does not exist
+# ansible web -m shell -a "grep -i LogLevel /etc/httpd/conf/httpd.conf" -i ansible_hosts
+---
+  - name: Examples of lineinfile
+    hosts: web
+    
+    tasks:
+      - name: "Example2: Add the line if it does not exist"
+        become: yes
+        become_user: root
+        lineinfile:
+          path: /etc/httpd/conf/httpd.conf
+          line: "LogLevel debug"
+          state: present
+          backup: yes
+        register: example2out
+
+# Replace a line in a file with ansible lineinfile.
+#ansible web -m shell -a "grep -i LogLevel /etc/httpd/conf/httpd.conf" -i ansible_hosts
+---
+  - name: Examples of lineinfile
+    hosts: web
+    
+    tasks:
+      - name: "Example3: Validate if a String or line is present in the file"
+        become: yes
+        become_user: root
+        lineinfile:
+          path: /etc/httpd/conf/httpd.conf
+          # The String to Search
+          regexp: "LogLevel warn" 
+          # The String to Replace
+          line: "LogLevel debug"
+          state: present
+          backup: yes
+        
+        register: example3out
+
+# Remove a line from the file,  if it is found ( All the Instances )
+# ansible web -m shell -a "grep -in LogLevel /etc/httpd/conf/httpd.conf" -i ansible_hosts
+---
+  - name: Examples of lineinfile
+    hosts: web
+    
+    tasks:
+      - name: "Example1: Validate if a String or line is present in the file"
+        become: yes
+        become_user: root
+        lineinfile:
+          path: /etc/httpd/conf/httpd.conf
+          # String to Search
+          regexp: "LogLevel [Dd]ebug" 
+          # State is set to Absent to remove if the Searching Line is found
+          state: absent
+          backup: yes
+        
+        register: example4out
+
+# Insert After a matching line using insertafter parameter
+# ansible web -m shell -a "grep -in Listen /etc/httpd/conf/httpd.conf" -i ansible_hosts
+---
+  - name: Examples of lineinfile
+    hosts: web
+    
+    tasks:
+      - name: "Example1: Validate if a String or line is present in the file"
+        become: yes
+        become_user: root
+        lineinfile:
+          path: /etc/httpd/conf/httpd.conf
+          insertafter: "^Listen [0-9]+" 
+          line: "Listen 443"
+          firstmatch: yes
+          state: present  
+        register: lineinfileexample
+
+# Insert Before a matching line using insertbefore parameter
+# ansible web -m shell -a "grep -in ServerAdmin /etc/httpd/conf/httpd.conf" -i ansible_hosts
+---
+  - name: Examples of lineinfile
+    hosts: web
+    
+    tasks:
+      - name: "Example6: Comment the Exisiting ServerAdmin Line"
+        become: yes
+        become_user: root
+        lineinfile:
+          path: /etc/httpd/conf/httpd.conf
+          regexp: '(^ServerAdmin .*)'
+          line: '# \1'
+          backrefs: yes
+          state: present
+        register: lineinfileexample6_1
+
+      - name: "Example6: Add a New ServerAdmin Before the Commented Line"
+        become: yes
+        become_user: root
+        lineinfile:
+          path: /etc/httpd/conf/httpd.conf
+          insertbefore: '# ServerAdmin .*'
+          line: "ServerAdmin aksarav@middlewareinventory.com"
+          state: present  
+        register: lineinfileexample6_2

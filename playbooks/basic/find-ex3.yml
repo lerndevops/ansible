@@ -1,0 +1,19 @@
+---
+- name: Ansible Find files & delete 
+  hosts: testserver
+  tasks:
+   - name : Find files older than 30 days
+     become: yes
+     find:
+       paths: /var/log
+       patterns: '*.log'
+       age: 30d
+       age_stamp: mtime
+     register: output
+
+   - name: Delete the files matching
+     become: yes
+     file:
+       path: "{{item.path}}"
+       state: absent
+     with_items: "{{ output.files }}"

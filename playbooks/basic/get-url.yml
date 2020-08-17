@@ -1,0 +1,28 @@
+---
+## How to download a file from URL
+
+- name: Download Tomcat8 from tomcat.apache.org
+  hosts: appserver
+  tasks:
+   - name: Download Tomcat using get_url
+     become: yes
+     get_url:
+       url: https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.46/bin/apache-tomcat-8.5.46.tar.gz 
+       dest: /tmp/
+       mode: 0755
+
+--- 
+# Download a file and get checksum from the URL
+- name: Download Tomcat8 from tomcat.apache.org
+  hosts: appserver
+  tasks:
+   - name: Download Tomcat using get_url
+     become: yes
+     get_url:
+       url: https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.56/bin/apache-tomcat-8.5.56.tar.gz 
+       dest: /tmp
+       mode: 0755
+       checksum: sha512:https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.56/bin/apache-tomcat-8.5.56.tar.gz.sha512
+       timeout: 20  # the request will timeout after 20 seconds
+
+

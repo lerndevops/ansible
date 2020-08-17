@@ -1,0 +1,24 @@
+# ansible web -m shell -a 'egrep -in "^ServerName|^ServerAdmin|^LogLevel|^DocumentRoot" /etc/httpd/conf/httpd.conf' -i ansible_hosts
+# ansible-playbook AnsibleWorkSpace/lineinfile-ex1.yml -i ansible_hosts  
+---
+  - name: Examples of lineinfile
+    hosts: web
+    tasks:
+      - name: "Ansible Lineinfile Multiple Lines"
+        become: yes
+        become_user: root
+        lineinfile:
+          path: /etc/httpd/conf/httpd.conf
+          # Line to Search/Match against
+          regexp: '{{item.From}}'
+          # Line to Replace with
+          line: '{{item.To}}'
+          state: present  
+          # To validate the Changes Before Committing/Saving
+          validate: "httpd -t -f %s"
+        with_items:
+         - { From: 'ServerName www.middlewareinventory.com:80', To: 'ServerName www.devopsjunction.com:80'}
+         - { From: 'ServerAdmin aksarav@middlewareinventory.com', To: 'ServerAdmin aksarav@devopsjunction.com'}
+         - { From: '^LogLevel .*', To: 'LogLevel debug'}
+         - { From: '^DocumentRoot .*', To: 'DocumentRoot "/var/www/devopsjunction"'}
+

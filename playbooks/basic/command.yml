@@ -1,0 +1,67 @@
+---
+# Get the Uptime of  remote servers
+  - name: Check the remote host uptime
+    hosts: testservers
+    tasks:
+      - name: Execute the Uptime command over Command module
+        register: uptimeoutput
+        command: "uptime"
+
+      - debug:
+          var: uptimeoutput.stdout_lines
+
+---
+  - name: Check the remote host Hostname, Version, Distribution with UNAME
+    hosts: testservers
+    tasks:
+      - name: Execute the UNAME command
+        register: unameout
+        command: "uname -a"
+
+      - debug:
+          var: unameout.stdout_lines
+ 
+---
+  - name: Check the disk usage of all the file system in the remote servers
+    hosts: testservers
+    tasks:
+      - name: Execute the df command
+        register: dfout
+        command: "df -h"
+
+      - debug:
+          var: dfout.stdout_lines
+
+---
+  - name: restart apache web server
+    hosts: testservers
+    tasks:
+      - name: restartapache
+        register: httpdresout
+        become: yes
+        command: "httpd -k restart"
+        when: ansible_hostname == "mwiweb02"
+
+
+      - debug:
+          var: httpdresout.stdout_lines
+
+---
+# - name: Start of Stop Server instance based on PID/LOCK file availability
+#   hosts: appservers
+#   tasks:
+           #      - name: Start the instance when the PID file is not present
+           #        become: yes
+           #        become_user: appuser
+           #        command: "startserver.sh"
+           #        args:
+           #          creates: "/path/to/pid/instance.pid"
+           #        register: startinst
+
+           #      - name: Stop the instance when the lock file is present
+           #        become: yes
+           #        become_user: appuser
+           #        command: "stopserver.sh"
+           #        args:
+           #          removes: "/path/to/lockfile/instance.lck"
+           #        register: stopinst
