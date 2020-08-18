@@ -1,0 +1,28 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: ensure nginx is at the latest version
+      apt: 
+        name: nginx 
+        state: latest
+      tags: 
+        - install
+    - name: start nginx
+      service:
+          name: nginx
+          state: started
+      tags:
+        - install
+
+    - name: stop nginx
+      service:
+          name: nginx
+          state: stopped
+      tags: uninstall
+    - name: ensure nginx is not installed
+      apt: 
+        name: nginx 
+        state: absent
+      tags: uninstall
+

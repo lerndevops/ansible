@@ -1,0 +1,46 @@
+---
+- hosts:  localhost
+  become: yes
+  tasks:
+   - name: Install Java 1.8
+     apt: 
+      name: openjdk-8-jdk 
+      state: present
+   - name: add group "tomcat"
+     group: 
+       name: tomcat
+   - name: add user "tomcat"
+     user: 
+      name: tomcat 
+      group: tomcat 
+      createhome: no
+   - name: Download Tomcat
+     get_url: 
+       url: https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.40/bin/apache-tomcat-8.5.40.tar.gz 
+       dest: /tmp/apache-tomcat-8.5.40.tar.gz
+   - name: Extract archive
+     unarchive: 
+        src: /tmp/apache-tomcat-8.5.40.tar.gz 
+        dest: /opt
+        creates: /opt/tomcat-8.5.40
+        remote_src: yes
+   - name: create symlink
+     file: 
+       src: /opt/tomcat-8.5.40
+       path: /opt/tomcat
+       state: link
+   - name: deploy war file
+     copy:
+       src: ../code/sampleapp.war
+       dest: /opt/tomcat/webapps
+   - name: Change ownership of Tomcat installation
+     file: 
+       path: /opt/tomcat 
+       owner: tomcat 
+       group: tomcat 
+       mode: 0755 
+       state: directory 
+       recurse: yes
+   - name: Start Tomcat
+     command: "nohup /opt/tomcat/bin/startup.sh"
+     become_user: tomcat
