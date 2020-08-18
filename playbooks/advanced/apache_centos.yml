@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: centos 
   become: yes
   tasks:
     - name: install a webserver redhat/centos
@@ -13,12 +13,12 @@
          state: started
       tags: install
 
-    - name: start the service
+    - name: stop the service
       service:
          name: httpd
          state: stopped
       tags: uninstall
-    - name: install a webserver on ubuntu
+    - name: uninstall a webserver on centos 
       yum:
         name: httpd
         state: absent

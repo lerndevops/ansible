@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: ubuntu 
   become: yes
   tasks:
    - name: Add Docker GPG key ubuntu
@@ -25,43 +25,10 @@
         state: present
      tags: ubuntu
 
-   - name: Remove docker if installed from CentOS repo
-     yum:
-       name: "{{ item }}"
-       state: absent 
-     with_items:
-        - docker
-        - docker-client
-        - docker-client-latest
-        - docker-common
-        - docker-latest
-        - docker-latest-logrotate
-        - docker-logrotate
-        - docker-engine
-     tags: centos
-   - name: Install basic packages for CentOS
-     yum:
-        name: [ 'yum-utils','device-mapper-persistent-data','lvm2' ]
-        state: latest
-     tags: centos
-
-   - name: Add Docker repo CentOS 
-     get_url:
-       url: https://download.docker.com/linux/centos/docker-ce.repo
-       dest: /etc/yum.repos.d/docer-ce.repo
-     tags: centos
-
-   - name: Install Docker CentOS
-     package:
-       name: [ 'docker-ce','docker-ce-cli','containerd.io']
-       state: latest
-     tags: centos
-
    - name: Start Docker service
      service:
        name: docker
        state: started
        enabled: yes
      tags: 
-       - centos
        - ubuntu

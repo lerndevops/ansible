@@ -1,25 +1,25 @@
 ---
-- hosts: all
+- hosts: ubuntu 
   become: yes
   tasks:
-    - name: install a webserver redhat/centos
-      yum:
-        name: httpd
+    - name: install a webserver ubuntu
+      apt:
+        name: apache2
         state: latest
       tags: install
     - name: start the service
       service:
-         name: httpd
+         name: apache2
          state: started
       tags: install
 
-    - name: start the service
+    - name: stop the service
       service:
-         name: httpd
+         name: apache2
          state: stopped
       tags: uninstall
-    - name: install a webserver on ubuntu
-      yum:
-        name: httpd
+    - name: uninstall a webserver on ubuntu
+      apt:
+        name: apache2
         state: absent
       tags: uninstall

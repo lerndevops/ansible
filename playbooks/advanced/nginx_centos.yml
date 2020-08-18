@@ -1,9 +1,9 @@
 ---
-- hosts: localhost
+- hosts: centos 
   become: yes
   tasks:
     - name: ensure nginx is at the latest version
-      apt: 
+      yum: 
         name: nginx 
         state: latest
       tags: 
@@ -21,7 +21,7 @@
           state: stopped
       tags: uninstall
     - name: ensure nginx is not installed
-      apt: 
+      yum: 
         name: nginx 
         state: absent
       tags: uninstall
