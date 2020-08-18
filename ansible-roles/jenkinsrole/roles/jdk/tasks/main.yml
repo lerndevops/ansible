@@ -1,0 +1,17 @@
+---
+#- name: Add the webupd8 APT repository
+#  apt_repository: repo=ppa:webupd8team/java state=present
+
+#- name: Automatically select the Oracle License
+#  shell: echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+#  changed_when: false
+
+#- name: Install Oracle Java
+#  apt: name={{item}} state=present force=yes
+#  with_items:
+#  - oracle-java{{pl_jdk_version}}-installer
+
+- name: Install open jdk 1.8
+  apt: 
+    name: openjdk-8-jdk 
+    state: present
