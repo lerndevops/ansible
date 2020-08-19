@@ -134,3 +134,81 @@ To see the ‘raw’ information as gathered:
 | ansible_python_interpreter | The target host python path. This is useful for systems with more than one Python or not located at "/usr/bin/python" such as \*BSD, or where /usr/bin/python is not a 2.X series Python. |
 
 > for more info & more Special Variables [LOOK HERE](https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html)
+
+## Variables Defined in Inventory
+
+> Are user defined variables
+
+> We already know Inventory is set of hosts ( target servers ) defined in an inventory file, and set of hosts in an inventory can be grouped together. So 
+
+> We have a flexibility to define set of variables against each host defined in the inventory file, and also grouping set of hosts in an inventory is possible which allows us to define the variables against a particular group.
+
+> So how to define these host variables & group variables ?
+
+> There are two ways we can define these host & group variables
+
+*  ad hoc way 
+*  ansible best practice
+
+#### Host Variables 
+
+1) **ad-hoc Way is to define them in the inventory files directly, like below**
+
+```
+   vi /path/to/inventory
+	192.168.25.33  role=appserver app=testapp env=dit
+	192.168.25.36  role=webserver app=testapp env=dit
+```
+2) **Ansible Best Practice**
+
+###### To better maintain the playbooks, it would be better to define host specific variables separated from inventory file. Ansible provides mechanism to let you define variables in host_vars folder. For example:
+```
+---
+# cd /path/to/inventory/
+  mkdir host_vars/ ; cd host_vars
+        
+  vi 192.168.25.33.yml
+            role: appserver
+            app: testapp
+            env: dit
+            
+ Note: host_vars directory must be beside to inventory file
+```
+#### Group Vriables 
+
+1) **ad-hoc Way -- is to define them in the inventory files directly, like below**
+```
+vi /path/to/inventory
+
+[group1]
+host1
+host2
+
+[group1:vars]
+role=pocserver
+env=poc
+```
+
+1) **Ansible Best Practice**
+
+###### Similar to host_vars directory we can have group_vars & define all variables under groupname.yml file:
+###### A default all.yml can be create for all groups in inventory file. 
+```
+---
+# cd /path/to/inventory/
+  mkdir group_vars/ ; cd group_vars
+        
+  vi all.yml  ## varibels for all groups in inventory 
+  vi webservers.yml ## variables specific to a group called webservers
+  
+# vi webservers.yml  or vi all.yml
+     role: pocservers
+     app: myapp
+     env: poc
+     
+Note: group_vars directory must be beside to inventory file
+```
+
+
+
+
