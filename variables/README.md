@@ -75,3 +75,41 @@ To see the ‘raw’ information as gathered:
    - debug: var=out.stdout
      when: ansible_distribution == 'Redhat'
 ```
+## Variables Defined in playbooks
+
+> we can define variables in playbook also, which normally is used for operation. Again, there are also two ways to define ansible playbook specific variables.
+
+1) ad-hoc way (writing vars inside plabooks)
+
+```
+- name: variables in playbook
+  hosts: localhost
+  connection: local
+  vars:
+     abc: 'set-via-vars-in-playbook'
+     hello: "world"
+     a: 15
+  tasks:
+    - debug:
+         var: abc,hello,a
+```
+
+2) Ansible Best Practice (variable imported from a file)
+
+```
+- name: variables in playbook
+  hosts: localhost
+  connection: local
+  vars_files:
+     - ./myvars1.yml
+  tasks:
+    - name: variables from vars_files module   
+      debug:
+        var: feeling,shero
+
+    - name: variables imported with include_vars module 
+      include_vars: ./myvars2.yml
+    - debug:  var=user,group
+
+```
+
