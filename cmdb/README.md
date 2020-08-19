@@ -65,7 +65,25 @@ scp overview.html to you local machine & open the html in you browser to see the
 ```
 ##### By default, the `html_fancy` template is used, which generates output containing an overview of all your hosts, with a section of detailed information for each host.
 
-## Available templates
+##### Some templates, such as txt_table and html_fancy, support columns. If a template supports columns, you can use the --columns / -c command line option to specify which columns to show.
+
+##### The --columns takes a comma separated list of columns (no spaces!) which should be shown. The columns must be speci􀃗ed by their id 􀃗eld. For information on what id 􀃗elds are supported by a template, take a look in the template. Usually it's the column title, but in lowercase and with spaces replaced by underscores
+
+##### For example: 
+```
+ansible-cmdb -t txt_table --columns name,os,ip,mem,cpus facts/
+
+output:
+
+Name OS IP Mem CPUs
+---------------------- ------------- ------------- --- -
+jib.electricmonk.nl Linuxmint 17 192.168.0.3 16g 1
+app.uat.local Debian 6.0.10 192.168.57.1 1g 1
+eek.electricmonk.nl Ubuntu 14.04 192.168.0.10 3g 1
+db01.prod.local Debian 6.0.10 192.168.58.1 0g 1
+```
+
+## All Available Templates
 
 ##### Ansible-cmdb currently provides the following templates out of the box
 
@@ -76,8 +94,6 @@ scp overview.html to you local machine & open the html in you browser to see the
 * `csv:` The CSV template outputs a CSV 􀃗le of your hosts.
 * `markdown:` The Markdown template generates host information in the Markdown format.
 * `sql:` The SQL template generates an .sql 􀃗le that can be loaded into an SQLite or MySQL database.
-
-
 
 
 
