@@ -4,7 +4,7 @@
 
 ##### For example, if you want to add a custom column to the `html_fancy` template (note that it's easier to just use the `--cust-cols` option. For more info see above): 
 
-##### 1. Make a copy of the default `html_fancy` template in a new dir. Here, we'll use files from the ansible-cmdb git repository.
+##### 1. Make a copy of the default `html_fancy` template in a new dir. Here, we'll use files from the ansible-cmdb install location.
 
 ```
 mkdir ~/mytemplates
@@ -12,7 +12,7 @@ cp /usr/local/lib/ansiblecmdb/data/tpl/html_fancy.tpl ~/mytemplates
 cp /usr/local/lib/ansiblecmdb/data/tpl/html_fancy_defs.html ~/mytemplates
 ```
 
-##### 2. Edit the `html_fancy_defs.html` file and add an entry to the cols = section. In this example, we'll add a column for the "CustonColumns".
+##### 2. Edit the `html_fancy_defs.html` file and add an entry to the cols = section. In this example, we'll add a column for the "My Column".
 
 ```
   cols = [
