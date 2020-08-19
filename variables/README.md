@@ -58,19 +58,20 @@ To see the ‘raw’ information as gathered:
 ```
 
 ```
-Example1:                                                   Example2:                                                                 
-                                                                                 
-- name: print out operating system                          - name: check arch & do some action                                            
-  hosts: localhost                                            hosts: localhost                                        
-  connection: local                                           connection: local                                             
-  gather_facts: True                                          gather_fact: true                                           
-  tasks:                                                      tasks:                                
-   - debug: var=ansible_distribution                            - command: cat /etc/os-release
-   - debug: var=ansible_architecture                              register: out                             
-   - debug: var=ansible_default_ipv4.address                    - debug: var=out.stdout == 'Ubuntu'                      
-                                                                  when: ansible_distribution == 'SLES'
-                                                                - command: echo "hello"
-                                                                  register: out
-                                                                - debug: var=out.stdout
-                                                                  when: ansible_distribution == 'Redhat'
+- name: print some facts                   
+  hosts: localhost                         
+  connection: local                        
+  gather_facts: True                       
+  tasks:                                   
+   - debug: var=ansible_distribution       
+   - debug: var=ansible_architecture       
+   - debug: var=ansible_default_ipv4.address
+   - command: cat /etc/os-release
+     register: out
+   - debug: var=out.stdout
+     when: ansible_distribution == 'SLES'
+   - command: echo "hello"
+     register: out
+   - debug: var=out.stdout
+     when: ansible_distribution == 'Redhat'
 ```
