@@ -1,0 +1,10 @@
+- name: variables in playbook
+  hosts: localhost
+  connection: local
+  vars:
+     abc: 'set-via-vars-in-playbook'
+     hello: "world"
+     a: 15
+  tasks:
+    - debug:
+         var: abc,hello,a

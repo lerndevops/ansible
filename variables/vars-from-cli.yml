@@ -1,0 +1,9 @@
+- name: variables injected from command line
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks: 
+    - debug: var=user,group
+
+    - debug:
+         msg: "the value of user is: {{ user }}, and group is: {{ group }}"

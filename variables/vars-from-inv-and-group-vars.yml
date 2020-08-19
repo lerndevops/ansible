@@ -1,0 +1,27 @@
+- name: variables injected from inv file & group_vars dir
+  hosts: ubuntu
+  gather_facts: no
+  tasks: 
+    - name: print ubuntu group vars from inv file
+      debug: 
+        msg: "value of u1 from inv is: {{ u1 }}"
+    - name: print ubuntu group vars from group_vars dir
+      debug: 
+        msg: "value of u2 from group_vars dir is: {{ u2 }}"
+
+- hosts: centos
+  gather_facts: no
+  tasks:
+    - name: print centos group vars from inv file
+      debug:
+        msg: "value of c1 from inv is: {{ c1 }}"
+    - name: print centos group vars from group_vars dir
+      debug:
+        msg: "value of c2 from group_vars dir is: {{ c2 }}"
+
+- hosts: all
+  gather_facts: no
+  tasks: 
+   - name: print all vars from group_vars dir
+     debug: 
+        msg: "value of a,b are: {{ a }},{{ b }}"

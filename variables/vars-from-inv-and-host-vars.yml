@@ -1,0 +1,8 @@
+- name: variables injected from inv file & host_vars dir
+  hosts: all
+  tasks: 
+    - debug: 
+        msg: "value of role from inv is: {{ role }}"
+
+    - debug: 
+        msg: "value of env from host_vars dir is: {{ env }}"

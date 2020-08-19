@@ -1,0 +1,19 @@
+- name: print some facts                   
+  hosts: localhost                         
+  connection: local                        
+  gather_facts: True                       
+  tasks:                                   
+   - debug: var=ansible_distribution       
+   - debug: var=ansible_architecture       
+   - debug: var=ansible_default_ipv4.address
+   - command: cat /etc/os-release
+     register: out
+   - debug: var=out.stdout
+     when: ansible_distribution == 'Ubuntu'
+   - command: echo "hello"
+     register: out
+   - debug: var=out.stdout
+     when: ansible_distribution == 'Redhat'
+   - setup: 
+     register: allfacts
+   - debug: var=allfacts

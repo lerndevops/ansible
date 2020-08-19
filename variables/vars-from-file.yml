@@ -1,0 +1,13 @@
+- name: variables in playbook
+  hosts: localhost
+  connection: local
+  vars_files:
+     - ./myvars1.yml
+  tasks:
+    - name: variables from vars_files module   
+      debug:
+        var: feeling,shero
+
+    - name: variables imported with include_vars module 
+      include_vars: ./myvars2.yml
+    - debug:  var=user,group

@@ -1,0 +1,21 @@
+[ubuntu]
+10.142.0.20 role=app
+
+[centos]
+10.128.0.6  role=db
+
+[ubuntu:vars]
+u1="u1 defined in inv file"
+
+[centos:vars]
+c1="c1 defined in inv file"
+
+
+
+[web:children]
+ubuntu
+centos
+
+[app:children]
+ubuntu
+centos

@@ -1,0 +1,15 @@
+---
+- hosts: all
+  gather_facts: true
+  tasks:
+   - debug: msg={{ groups['ubuntu'] }}
+
+   - debug: msg={{ hostvars[inventory_hostname]['ansible_date_time']['date'] }}
+
+   - debug: var=play_hosts
+
+   - debug: var=group_names
+
+   - debug: var=hostvars[inventory_hostname]['ansible_user_id']
+
+   - debug: var=inventory_hostname
