@@ -22,15 +22,15 @@
 
 #### Whatever language you choose to write your script in, if passed the --list flag, it should output JSON in this format:
 
-      *  a dictionary of groups (i.e development, production)
-
-      *  a list of hosts in each group
-
-      *  a dictionary of variables
-
-      *  a _meta dictionary
-
-      *  hosts and the hostvars
+   *  a dictionary of groups (i.e development, production)
+   
+   *  a list of hosts in each group
+   
+   *  a dictionary of variables
+   
+   *  a _meta dictionary
+   
+   *  hosts and the hostvars
 
 > As pointed above, the output `must` be in `JSON` format.
 
