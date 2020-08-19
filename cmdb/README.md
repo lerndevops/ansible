@@ -75,12 +75,12 @@ ansible-cmdb -t txt_table --columns name,os,ip,mem,cpus facts/
 
 output:
 
-Name OS IP Mem CPUs
----------------------- ------------- ------------- --- -
-jib.electricmonk.nl Linuxmint 17 192.168.0.3 16g 1
-app.uat.local Debian 6.0.10 192.168.57.1 1g 1
-eek.electricmonk.nl Ubuntu 14.04 192.168.0.10 3g 1
-db01.prod.local Debian 6.0.10 192.168.58.1 0g 1
+Name                 OS             IP             Mem   CPUs
+-------------------  -------------- -------------  ----  ---- 
+jib.electricmonk.nl  Linuxmint 17   192.168.0.3    16g   1
+app.uat.local        Debian 6.0.10  192.168.57.1   1g    1
+eek.electricmonk.nl  Ubuntu 14.04   192.168.0.10   3g    1
+db01.prod.local      Debian 6.0.10  192.168.58.1   0g    1
 ```
 
 ## All Available Templates
