@@ -65,9 +65,9 @@ scp overview.html to you local machine & open the html in you browser to see the
 ```
 ##### By default, the `html_fancy` template is used, which generates output containing an overview of all your hosts, with a section of detailed information for each host.
 
-##### Some templates, such as txt_table and html_fancy, support columns. If a template supports columns, you can use the --columns / -c command line option to specify which columns to show.
+##### Some templates, such as txt_table and html_fancy, support columns. If a template supports columns, you can use the `--columns / -c` command line option to specify which columns to show.
 
-##### The --columns takes a comma separated list of columns (no spaces!) which should be shown. The columns must be speci􀃗ed by their id 􀃗eld. For information on what id 􀃗elds are supported by a template, take a look in the template. Usually it's the column title, but in lowercase and with spaces replaced by underscores
+##### The `--columns` takes a comma separated list of columns (no spaces!) which should be shown. The columns must be specified by their `id` field. For information on what `id` fields are supported by a template, take a look in the template. Usually it's the column title, but in lowercase and with spaces replaced by underscores
 
 ##### For example: 
 ```
