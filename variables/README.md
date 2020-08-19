@@ -150,7 +150,7 @@ To see the ‘raw’ information as gathered:
 *  ad hoc way 
 *  ansible best practice
 
-#### Host Variables 
+### Host Variables 
 
 1) **ad-hoc Way is to define them in the inventory files directly, like below**
 
@@ -161,7 +161,7 @@ To see the ‘raw’ information as gathered:
 ```
 2) **Ansible Best Practice**
 
-###### To better maintain the playbooks, it would be better to define host specific variables separated from inventory file. Ansible provides mechanism to let you define variables in host_vars folder. For example:
+     * To better maintain the playbooks, it would be better to define host specific variables separated from inventory file. Ansible provides mechanism to let you define variables in host_vars folder. For example:
 ```
 ---
 # cd /path/to/inventory/
@@ -174,7 +174,7 @@ To see the ‘raw’ information as gathered:
             
  Note: host_vars directory must be beside to inventory file
 ```
-#### Group Vriables 
+### Group Vriables 
 
 1) **ad-hoc Way -- is to define them in the inventory files directly, like below**
 ```
@@ -189,10 +189,10 @@ role=pocserver
 env=poc
 ```
 
-1) **Ansible Best Practice**
+2) **Ansible Best Practice**
 
-###### Similar to host_vars directory we can have group_vars & define all variables under groupname.yml file:
-###### A default all.yml can be create for all groups in inventory file. 
+     * Similar to host_vars directory we can have group_vars & define all variables under groupname.yml file:
+     * A default all.yml can be create for all groups in inventory file. 
 ```
 ---
 # cd /path/to/inventory/
