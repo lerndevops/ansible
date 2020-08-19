@@ -112,4 +112,23 @@ To see the ‘raw’ information as gathered:
     - debug:  var=user,group
 
 ```
+## Built in Variables
+
+
+| Parameter |  Description |
+|:--------- | :------------ |
+| hostvars 	|  A dict whose keys are Ansible host names and values are dicts that map variable names to values |
+| inventory_hostname | Name of the current host as known by Ansible |
+| group_names |	A list of all groups that the current host is a member of |
+| groups | 	A dict whose keys are Ansible group names and values are a list of hostnames that are members of the group. Includes all and ungrouped groups: {"all": […], "web": […], "ungrouped": […]} |
+| play_hosts |	A list of inventory hostnames that are active in the current play |
+| ansible_version |	A dict with Ansible version info: {"full": 1.8.2", "major": 1, "minor": 8, "revision": 2, "string": "1.8.2"} |
+| ansible_host | The name of the host to connect to, if different from the alias you wish to give to it. |
+| ansible_ssh_port | The ssh port number, if not 22 | 
+| ansible_ssh_user | The default ssh user name to use. | 
+| ansible_ssh_pass | The ssh password to use (this is insecure, we strongly recommend using --ask-pass or SSH keys) }
+| ansible_sudo_pass | The sudo password to use (this is insecure, we strongly recommend using --ask-sudo-pass) |
+| ansible_connection | Connection type of the host. Candidates are local, ssh or paramiko. |
+| ansible_ssh_private_key_file | Private key file used by ssh.  Useful if using multiple keys and you don't want to use SSH agent. |
+| ansible_python_interpreter | The target host python path. This is useful for systems with more than one Python or not located at "/usr/bin/python" such as \*BSD, or where /usr/bin/python is not a 2.X series Python. |
 
