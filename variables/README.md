@@ -112,8 +112,9 @@ To see the ‘raw’ information as gathered:
     - debug:  var=user,group
 
 ```
-## Built in Variables
+## Built in Variables / Special Variables 
 
+> These variables cannot be set directly by the user; Ansible will always override them to reflect internal state.
 
 | Parameter |  Description |
 |:--------- | :------------ |
@@ -132,3 +133,4 @@ To see the ‘raw’ information as gathered:
 | ansible_ssh_private_key_file | Private key file used by ssh.  Useful if using multiple keys and you don't want to use SSH agent. |
 | ansible_python_interpreter | The target host python path. This is useful for systems with more than one Python or not located at "/usr/bin/python" such as \*BSD, or where /usr/bin/python is not a 2.X series Python. |
 
+> for more info & more Special Variables [LOOK HERE](https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html)
