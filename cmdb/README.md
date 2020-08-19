@@ -38,8 +38,8 @@ Pre Req
 
 ##### Install Ansible-cmdb through Pip:
 ```
-	sudo apt install python3-pip
-	sudo pip3 install ansible-cmdb
+	sudo apt install python-pip
+	sudo pip install ansible-cmdb
 ```
 
 ##### Through distribution packages - For Debian / Ubuntu systems:
@@ -48,3 +48,38 @@ Pre Req
 ```
 
 ##### Support for all other package managers (RPM, etc) has been dropped. We need to use the pip method instead, or install from tar.gz.
+
+## Working with Ansible CMDB
+
+##### First, generate Ansible output for your hosts:
+```
+mkdir out
+ansible all -m setup --tree out/
+```
+
+##### Next, call ansible-cmdb on the resulting `out/` directory to generate the CMDB overview page
+```
+ansible-cmdb out/ > overview.html
+
+scp overview.html to you local machine & open the html in you browser to see the results
+```
+##### By default, the `html_fancy` template is used, which generates output containing an overview of all your hosts, with a section of detailed information for each host.
+
+## Available templates
+
+##### Ansible-cmdb currently provides the following templates out of the box
+
+* `html_fancy:` A dynamic, modern HTML page containing all hosts.
+* `html_fancy_split:` A dynamic, modern HTML page with each host's details in a separate file.
+* `txt_table:` A quick text table summary of the available hosts with some minimal information.
+* `json:` Dumps all hosts including groups, variable, custom info in JSON format.
+* `csv:` The CSV template outputs a CSV 􀃗le of your hosts.
+* `markdown:` The Markdown template generates host information in the Markdown format.
+* `sql:` The SQL template generates an .sql 􀃗le that can be loaded into an SQLite or MySQL database.
+
+
+
+
+
+
+
