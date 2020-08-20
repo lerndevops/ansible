@@ -28,8 +28,8 @@
     {"title": "Arch",          "id": "arch",          "func": col_arch,           "sType": "string", "visible": False},
     {"title": "vCPUs",         "id": "vcpus",         "func": col_vcpus,          "sType": "num",    "visible": True},
     {"title": "RAM [GiB]",     "id": "ram",           "func": col_ram,            "sType": "num",    "visible": True},
-    {"title": "CustColumn1",   "id": "column1",       "func": col_1,              "sType": "num",    "visible": True},
-    {"title": "CustColumn2",   "id": "column2",       "func": col_2,              "sType": "num",    "visible": True},
+    {"title": "CRON Status",   "id": "cronstatus",   "func": col_cronstatus,       "sType": "string", "visible": True},
+    {"title": "My Data",       "id": "mydata",        "func": col_mydata,         "sType": "string", "visible": True}
   ]
 
   # Include only given columns if -c / --columns is given
@@ -491,6 +491,15 @@
 <%def name="col_dtap(host, **kwargs)">
   ${jsonxs(host, 'hostvars.dtap', default='')}
 </%def>
+
+<%def name="col_cronstatus(host, **kwargs)">
+  ${jsonxs(host, 'ansible_facts.ansible_local.cron-status.cron_status', default='')}
+</%def>
+
+<%def name="col_mydata(host, **kwargs)">
+  ${jsonxs(host, 'ansible_facts.ansible_local.mydata.org', default='')}
+</%def>
+
 
 <%def name="col_groups(host, **kwargs)">
   ${'<br>'.join(jsonxs(host, 'groups', default=''))}

@@ -1,0 +1,19 @@
+- hosts: all
+  become: true
+  tasks:
+   - name: Create fact directory
+     file:
+       path: /etc/ansible/facts.d/
+       state: directory
+
+   - name: Create a static custom fact mydata
+     copy:
+       src: ./cron-status.sh
+       dest: /etc/ansible/facts.d/cron-status.fact
+       mode: 0755
+
+   - name: Create a dynamic custom fact foobar
+     copy:
+       src: ./mydata.sh
+       dest: /etc/ansible/facts.d/mydata.fact
+       mode: 0775
