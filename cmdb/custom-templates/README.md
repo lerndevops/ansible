@@ -19,18 +19,32 @@ cp /usr/local/lib/ansiblecmdb/data/tpl/html_fancy_defs.html ~/mytemplates
     {"title": "Name",          "id": "name",          "func": col_name,           "sType": "string", "visible": True},
     {"title": "Groups",        "id": "groups",        "func": col_groups,         "sType": "string", "visible": False},
     {"title": "FQDN",          "id": "fqdn",          "func": col_fqdn,           "sType": "string", "visible": True},
-    {"title": "My Column",     "id": "my_column",     "func": col_my_column,      "sType": "string", "visible": True},
+    {"title": "CRON Status",   "id": "cronstatus",   "func": col_cronstatus,       "sType": "string", "visible": True},
+    {"title": "My Data",       "id": "mydata",        "func": col_mydata,         "sType": "string", "visible": True}
+
   ]
 ```
 ##### 3. Now you need to implement the `col_my_column` template function. In the same `html_fancy_defs.html` file, search for the ## Column functions section. Add a column template function called `col_my_column`:
 
 ```
-+ <%def name="col_my_column(host, **kwargs)">
-+   ${jsonxs(host, 'ansible_facts.ansible_local_mydata', default='')}
-+ </%def>
-```
-##### 4. Finally, render the custom template. For this to work, you must be in the same directory as the custom template!.
+
+<%def name="col_cronstatus(host, **kwargs)">
+  ${jsonxs(host, 'ansible_facts.ansible_local.cron-status.cron_status', default='')}
+</%def>
+
+<%def name="col_mydata(host, **kwargs)">
+  ${jsonxs(host, 'ansible_facts.ansible_local.mydata', default='')}
+</%def>
 
 ```
-ansible-cmdb -t html_fancy_defs.html -i hosts out/ > custom-data.html
+##### 4. Deploy the custom fatc scripts to target servers
+
+```
+ansible-playbook -i /home/ansiblebot/inv configure-custom-facts.yml
+```
+
+##### 5. Finally, render the custom template. For this to work, you must be in the same directory as the custom template!.
+
+```
+ansible-cmdb -t ./html_fancy -i inv out/ > custom-data.html
 ```
