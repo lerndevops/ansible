@@ -1,0 +1,37 @@
+- name: Remove docker if installed from CentOS repo
+  yum:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+     - docker
+     - docker-client
+     - docker-client-latest
+     - docker-common
+     - docker-latest
+     - docker-latest-logrotate
+     - docker-logrotate
+     - docker-engine
+
+- name: Install basic packages for CentOS
+  yum:
+     name: [ 'yum-utils','device-mapper-persistent-data','lvm2' ]
+     state: latest
+
+- name: Add Docker repo CentOS
+  get_url:
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/docer-ce.repo
+
+- name: install containerd CentOS
+  shell: yum -y install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
+
+- name: Install Docker CentOS
+  package:
+    name: docker-ce
+    state: latest
+
+- name: Start Docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes
