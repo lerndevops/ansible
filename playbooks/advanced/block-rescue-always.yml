@@ -6,28 +6,28 @@
        - debug:
            msg: "This section is in Block section, where we are starting service which will fail as package not installed"
        - name: start the httpd service 
-	     service:
+         service:
            name: httpd 
-		   state: started
-         when: ansible_distribution == "RedHat" 
+           state: started
+     when: ansible_distribution == "RedHat" 
      rescue:
        - debug:
            msg: "This section is in rescue section, which means block section failed, so we install httpd/apache"
        - name: here we install httpd on RedHat distribution 
-	     yum:
+         yum:
            name: httpd
            state: present
        - name: start the httpd service 
-	     service:
+         service:
            name: httpd 
-		   state: started
-         when: ansible_distribution == "RedHat" 
+           state: started
+     when: ansible_distribution == "RedHat" 
      always:
        - debug:
            msg: "This section is in always section and will do changes in httpd.conf file"
        - lineinfile:
             path: /etc/httpd/conf/httpd.conf 
-			regexp: '^Listen '
+            regexp: '^Listen '
             insertafter: '^#Listen ' 
-			line: Listen 8080
-         when: ansible_distribution == "RedHat"
+            line: Listen 8080
+     when: ansible_distribution == "RedHat"
