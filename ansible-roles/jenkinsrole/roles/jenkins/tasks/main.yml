@@ -6,10 +6,10 @@
   lineinfile: dest=/etc/sudoers state=present regexp='^%jenkins' line='%jenkins ALL=(ALL) NOPASSWD:ALL' validate='visudo -cf %s'
 
 - name: Add the Jenkins APT repository key
-  apt_key: url=http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key state=present
+  apt_key: url=https://pkg.jenkins.io/debian-stable/jenkins.io.key state=present
 
 - name: Add the Jenkins APT repository
-  apt_repository: repo="deb http://pkg.jenkins-ci.org/debian binary/" state=present
+  apt_repository: repo="deb https://pkg.jenkins.io/debian-stable binary/" state=present
 
 - name: Install Jenkins
   apt: name={{item}} state=latest
