@@ -13,6 +13,8 @@
 4. And one more important thing is product support. These features are not available in Ansible and can only be achieved by Ansible Tower.
 
 
+<p align="center"> <img src="https://github.com/lerndevops/ansible/blob/master/static/Tower-Featurs.PNG"> </p>
+
 ### `Ansible Dashboard`
 
 > We get an Ansible Dashboard as soon as we login to the Ansible Tower web console.  Ansible Dashboard provides a graphical view of job status, brief about recent job runs and templates. It also shows no. of hosts, failed hosts, inventories, projects, etc. We can adjust the job status setting as per our requirement as well.
