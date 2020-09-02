@@ -1,6 +1,6 @@
 ## Introduction to Ansible Tower
 
-> ****Ansible Tower is an enterprise solution for Ansible by RedHat. It has a web console and REST API to operate Ansible across team, organization, and enterprise. It also provides role-based access control,  job scheduling, integrated notification, and graphical inventory management. It is a centralized hub for all our automation tasks. It can be easily integrated with third-party tools and processes using the REST API and CLI.***
+> ***Ansible Tower is an enterprise solution for Ansible by RedHat. It has a web console and REST API to operate Ansible across team, organization, and enterprise. It also provides role-based access control,  job scheduling, integrated notification, and graphical inventory management. It is a centralized hub for all our automation tasks. It can be easily integrated with third-party tools and processes using the REST API and CLI.***
 
 ## Why Do We Need Tower in Ansible?
 
