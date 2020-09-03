@@ -1,6 +1,6 @@
 - hosts: all
   tasks: 
-    - shell: df -h
+    - shell: df -h /
       register: diskspace
      
     - debug: 
