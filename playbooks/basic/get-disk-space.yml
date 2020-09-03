@@ -1,0 +1,7 @@
+- hosts: all
+  tasks: 
+    - shell: df -h
+      register: diskspace
+     
+    - debug: 
+        var: diskspace.stdout
