@@ -5,7 +5,7 @@ cat<<EOF
 {
   "webservers": {
     "hosts": [
-      "34.73.22.127"
+      "10.128.0.13"
     ],
     "vars": {
       "host_test": "test-value"
@@ -13,7 +13,7 @@ cat<<EOF
   },
   "appservers": {
     "hosts": [
-      "10.128.0.6"
+      "10.128.0.13"
     ],
     "vars": {
       "host_test": "test-value"
