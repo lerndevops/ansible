@@ -1,0 +1,15 @@
+- hosts: db
+  tasks:
+    - name: find uptime
+      command: uptime
+      register: a
+
+    - debug: 
+        var: a.stdout
+
+    - debug:
+        msg: "hi there! this is debug module ansible"
+
+
+    - debug: 
+        msg: "hi there! value of a is: {{ a.stdout }}"

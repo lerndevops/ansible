@@ -1,0 +1,18 @@
+- hosts: t-node2
+  become: yes
+  tasks:
+  - user:
+      name: "{{ item }}"
+      state: present
+    loop:
+      - user1
+      - user2
+      - user3
+  - copy:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}"
+      mode: "{{ item.mode }}"
+    with_items:
+      - { src: /home/botuser/file1, dest: '/tmp', mode: '0777' }
+      - { src: /home/botuser/file2, dest: '/opt', mode: '0600' }
+      - { src: /home/botuser/file3, dest: '/home/botuser', mode: '0400' }

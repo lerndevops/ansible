@@ -1,0 +1,6 @@
+- hosts: app
+  tasks: 
+    - name: make sure that you enough space on /tmp folder
+      shell: "df -h /tmp | grep -v Filesystem | awk '{print $4}' | cut -d G -f1"
+      register: tmpspace
+      #failed_when: "tmpspace.stdout|float < 20"

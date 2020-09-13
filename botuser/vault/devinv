@@ -1,0 +1,15 @@
+[web]
+10.128.0.13 
+10.128.0.14
+
+[app]
+t-node2.us-central1-a.c.devops-262910.internal
+t-node1.us-central1-a.c.devops-262910.internal
+
+[db]
+t-node[1:2] 
+
+[dev:children]
+web
+app
+db

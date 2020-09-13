@@ -1,0 +1,14 @@
+- hosts: t-node1
+  become: yes
+  tasks: 
+    - name: file
+      file: 
+        path: "{{ item }}"
+        #dest: /opt
+        state: touch
+      with_items:
+           - /opt/1.java
+           - /opt/2.java
+           - /opt/3.java
+           - /opt/hello3.txt
+

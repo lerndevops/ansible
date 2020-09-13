@@ -1,0 +1,5 @@
+- name: uninstall kubeamd,kubelet,kubectl on Ubuntu
+  yum:
+   name: ['kubeadm', 'kubelet', 'kubectl']
+   state: absent 
+   autoremove: yes

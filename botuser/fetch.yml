@@ -1,0 +1,7 @@
+- hosts: web
+  become: yes
+  tasks:
+   - fetch:
+       src: /etc/sudoers
+       dest: /tmp/hello
+       flat: yes

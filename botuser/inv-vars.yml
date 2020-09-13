@@ -1,0 +1,32 @@
+- hosts: web
+  vars:
+    var1: hello
+    var2: world
+    ostype: alpine
+    arch: 64bit
+    ansible_distribution: mysystem
+
+  vars_files:
+    - ./myvar.yml
+
+  tasks:
+    - include_vars: ./myvar2.yml
+
+    - debug: 
+        msg: "this variable from inv file {{ var1 }}"
+      vars: 
+        var1: deloitte
+
+    - debug:
+        msg: "this variable from inv file {{ var2 }}"
+
+    - debug: 
+        msg: "this variable is from group vars inv {{ ostype }}"
+
+    - debug: 
+        msg: "this variable is from group vars inv {{ arch }}"
+
+    - debug: 
+        msg: "understand precedence {{ ansible_distribution }}"
+    - debug: 
+        var: groups

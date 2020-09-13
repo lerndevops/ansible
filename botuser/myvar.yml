@@ -1,0 +1,6 @@
+var1: hi
+var2: there
+ostype: windows
+arch: 32bit
+ansible_distribution: mywinsystem
+

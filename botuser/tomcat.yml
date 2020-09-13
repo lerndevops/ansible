@@ -1,0 +1,137 @@
+- hosts: t-node1  
+  become: yes
+  tasks:
+    - name: Install Java 1.8
+      apt:
+        name: openjdk-8-jdk
+        state: present
+      tags: 
+        - install 
+
+    - name: create tomcat group 
+      group:
+        name: tomcat
+        state: present
+      tags:
+        - install
+        
+    - name: create tomcat user
+      user:
+        name: tomcat
+        state: present
+        createhome: no
+        group: tomcat
+      tags:
+        - install
+
+        #- name: copy tomcat software
+        #copy: 
+        #src: /home/software/apache-tomcat-8.5.37.tar.gz
+        #dest: /tmp
+
+    - name: extract tomcat bundle 
+      unarchive: 
+        src: /home/software/apache-tomcat-8.5.37.tar.gz
+        dest: /opt
+      tags:
+        - install
+
+
+    - name: create softlink for tomcat folder
+      file: 
+        src: /opt/apache-tomcat-8.5.37
+        dest: /opt/tomcat
+        state: link
+      tags:
+        - install
+
+    - name: update permistion for tomcat
+      file: 
+        path: /opt/tomcat
+        state: directory 
+        owner: tomcat
+        group: tomcat
+        mode: '0755'
+        recurse: yes
+      tags:
+        - install
+
+    - name: modify tomcat port number
+      replace: 
+        path: /opt/tomcat/conf/server.xml
+        regexp: '8080'
+        replace: '8090'
+      tags:
+        - install
+
+    - name: create tomcat bootup service 
+      copy:
+        dest: /etc/systemd/system/tomcat.service
+        content: |
+                # Systemd unit file for tomcat
+                [Unit] 
+                Description=Apache Tomcat Web Application Container
+                After=syslog.target network.target
+
+                [Service]
+                Type=forking
+
+                Environment=CATALINA_HOME=/opt/tomcat
+                Environment=CATALINE_BASE=/opt/tomcat
+
+                ExecStart=/opt/tomcat/bin/startup.sh
+                ExecStop=/opt/tomcat/bin/shutdown.sh
+
+                User=tomcat
+                Group=tomcat
+
+                [Install]
+                WantedBy=multi-user.target
+
+    - name: start tomcat service 
+      systemd:
+        name: tomcat
+        state: restarted
+        enabled: yes
+      register: tomcatstatus
+      tags:
+        - install
+
+    - name: get the status of tomcat
+      debug: 
+       var: tomcatstatus
+      tags:
+        - install
+
+
+### Uninstallation Process starte here
+
+    - name: stop tomcat service
+      systemd: 
+        name: tomcat
+        state: stopped
+        enabled: no
+      tags:
+          - uninstall
+
+    - name: remove tomcat softlink
+      file: 
+       path: /opt/tomcat
+       state: absent
+      tags:
+          - uninstall
+
+    - name: remote tomcat installation 
+      file: 
+       path: /opt/apache-tomcat-8.5.37
+       state: absent
+      tags:
+          - uninstall
+
+    - name: uninstall java
+      apt:
+        name: openjdk-8-jdk
+        state: absent
+      tags: 
+          - uninstall
+

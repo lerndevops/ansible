@@ -1,0 +1,6 @@
+var1: hello
+var2: "how are you"
+ostype: zos
+arch: myarch
+ansible_distribution: myzossystem
+

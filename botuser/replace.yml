@@ -1,0 +1,6 @@
+- hosts: db
+  tasks: 
+    - replace:
+        path: /tmp/hello.txt
+        regexp: 'how'
+        #replace: 'how'

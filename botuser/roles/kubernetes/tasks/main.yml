@@ -1,0 +1,51 @@
+- name: taks in main.yml
+  file:
+    path: /tmp/day7.txt
+    state: touch
+    
+- name: install Docker on Ubuntu
+  include_tasks: installDockerUbuntu.yml
+  when: ansible_distribution == "Ubuntu" and action == "install"
+
+- name: install Docker on CentOS
+  include_tasks: installDockerCentos.yml
+  when: ansible_distribution == "CentOS" and action == "install"
+
+- name: install Kubernetes on Ubuntu
+  include_tasks: installKubeUbuntu.yml
+  when: ansible_distribution == "Ubuntu" and action == "install"
+
+- name: install Kubernetes on CentOS
+  include_tasks: installKubeCentos.yml
+  when: ansible_distribution == "CentOS" and action == "install"
+
+- name: un-install Kubernetes on Ubuntu
+  include_tasks: uninstallKubeUbuntu.yml
+  when: ansible_distribution == "Ubuntu" and action == "uninstall"
+
+- name: un-install Kubernetes on CentOS
+  include_tasks: uninstallKubeCentos.yml
+  when: ansible_distribution == "CentOS" and action == "uninstall"
+
+- name: copying files from files folder
+  copy: 
+    src: "{{ item }}"
+    dest: /opt
+  with_items: 
+    - hello.txt
+    - app.props
+    - kube.props
+
+- name: generate template file
+  template: 
+    src: app.data
+    dest: /opt/app.conf
+  notify: "restart docker"
+
+
+
+
+
+
+
+

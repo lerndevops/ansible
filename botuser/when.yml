@@ -1,0 +1,17 @@
+- hosts: db
+  tasks: 
+    - command: ls /tmp
+      register: outt
+
+    - debug: 
+        var: outt
+      when: outt.stdout == ""
+
+    - shell: systemctl status cron
+      ignore_errors: yes 
+      register: cronstatus
+
+    - service: 
+        name: cron
+        state: restarted
+      when: "'could not be found' in cronstatus.stdout" 

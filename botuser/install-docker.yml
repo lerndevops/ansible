@@ -1,0 +1,15 @@
+- hosts: web
+  become: yes
+  tasks: 
+  - import_tasks: install-docker-ubuntu.yml
+    when: ansible_distribution == 'Ubuntu'
+ 
+  - import_tasks: install-docker-centos.yml
+    when: ansible_distribution == 'CentOS'
+
+  - include_tasks: install-docker-ubuntu.yml
+    when: ansible_distribution == 'Ubuntu'
+
+  - include_tasks: install-docker-centos.yml
+    when: ansible_distribution == 'CentOS'
+

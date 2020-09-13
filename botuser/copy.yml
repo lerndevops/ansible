@@ -1,0 +1,9 @@
+- hosts: web
+  gather_facts: no
+  tasks:
+    - copy: 
+        content: >
+             hi there, how are you
+             this is text from playbook
+             hello
+        dest: /tmp/deeel.txt

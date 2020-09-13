@@ -1,0 +1,5 @@
+- name: task in handler - restart service 
+  service: 
+    name: docker
+    state: restarted 
+  listen: "restart docker"   

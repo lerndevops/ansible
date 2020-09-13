@@ -1,0 +1,7 @@
+- name: uninstall kubeamd,kubelet,kubectl on Ubuntu
+  apt: 
+    name: ['kubeadm', 'kubelet', 'kubectl']
+    state: absent
+    update_cache: yes
+    autoremove: yes
+

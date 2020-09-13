@@ -1,0 +1,5 @@
+plugin: gcp_compute
+projects:
+  - devops-262910
+auth_kind: serviceaccount
+service_account_file: /home/botuser/ansible-user-sa.json

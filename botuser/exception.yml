@@ -1,0 +1,22 @@
+- hosts: web
+  become: yes
+  ignore_errors: yes
+  tasks:
+     - name: create file
+       file: 
+        path: /tmp/day6.txt 
+        state: touch
+
+     - name: run a shell comand 
+       copy:
+         src: /tmp/day5.txt
+         dest: /opt
+         remote_src: yes 
+
+     - name: restart a service 
+       service:
+          name: jenkins
+          state: restarted
+
+     - name: shell 
+       shell: echo hello

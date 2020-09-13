@@ -1,0 +1,57 @@
+- hosts: db
+  become: yes
+  tasks:
+    - name: install a webserver ubuntu
+      apt:
+        name: apache2
+        state: latest
+      when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '16.04'
+      tags: install
+    - name: start the service
+      service:
+         name: apache2
+         state: started
+      tags: install
+      when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '16.04'
+
+    - name: stop the service
+      service:
+         name: apache2
+         state: stopped
+      tags: uninstall
+      when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '16.04'
+
+    - name: uninstall a webserver on ubuntu 
+      apt:
+        name: apache2
+        state: absent
+      tags: uninstall
+      when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '16.04'
+
+    - name: install a webserver redhat/centos
+      yum:
+        name: httpd
+        state: latest
+      tags: install
+      when: ansible_distribution == 'CentOS' and ansible_distribution_version == "8.2"
+
+    - name: start the service
+      service:
+         name: httpd
+         state: started
+      tags: install
+      when: ansible_distribution == 'CentOS' and ansible_distribution_version == "8.2"
+
+    - name: stop the service
+      service:
+         name: httpd
+         state: stopped
+      tags: uninstall
+      when: ansible_distribution == 'CentOS' and ansible_distribution_version == "8.2"
+
+    - name: uninstall a webserver on centos 
+      yum:
+        name: httpd
+        state: absent
+      tags: uninstall
+      when: ansible_distribution == 'CentOS' and ansible_distribution_version == "8.2"

@@ -1,0 +1,57 @@
+- name: create GCP Instance
+  hosts: localhost
+  tasks: 
+    - name: create GCP instances 
+      gcp_compute_instance: 
+         project: devops-262910
+         auth_kind: serviceaccount
+         service_account_file: "/home/botuser/ansible-user-sa.json"
+         name: "{{ item }}"
+         zone: europe-west3-c
+         machine_type: g1-small
+         disks:
+           - boot: 'true'
+             auto_delete: 'true'
+             initialize_params: 
+               disk_name: "{{ item }}"
+               disk_size_gb: 12
+               source_image: "projects/ubuntu-os-cloud/global/images/ubuntu-1804-bionic-v20200821a"
+         network_interfaces:
+           - access_configs:
+              - name: External NAT
+                type: ONE_TO_ONE_NAT
+         state: "{{ action }}" 
+      register: out
+      with_items:
+        - qa-master
+        - qa-worker
+        - prod-master
+        - prod-worker
+
+    - add_host:
+        hostname: "{{ item.networkInterfaces[0].accessConfigs[0].natIP }}"
+        groupname: mygcpservers
+        ansible_user: botuser
+        ansible_ssh_private_key_file: /home/botuser/.ssh/id_rsa
+      with_items: "{{ out.results }}"
+
+- name: configure servers
+  hosts: mygcpservers
+  become: yes
+  tasks: 
+    - name: install git 
+      package: 
+        name: git
+        state: present 
+
+    - name: clone git repo
+      shell: git clone https://github.com/lerndevops/ansible
+      args:
+        chdir: /tmp
+    - name: setup user
+      shell: chmod -R 755 /tmp/ansible/* ; /tmp/ansible/install/setup-user.sh
+      register: setupuser
+    - debug: 
+        var: setupuser
+    - include_tasks: /home/botuser/install-docker-ubuntu.yml
+    - include_tasks: /home/botuser/install-kube.yml

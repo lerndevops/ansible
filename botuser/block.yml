@@ -1,0 +1,40 @@
+- hosts: web
+  #become: yes
+  tasks: 
+    - name: install a web server
+
+      block: 
+        - debug: 
+            msg: "this is under block section of my playbook"
+        - name: start httpd service 
+          service: 
+             name: httpd
+             state: started
+          become: yes
+      when: ansible_distribution == "CentOS"
+
+      rescue: 
+        - debug:
+            msg: "this task is under rescue section"
+        - name: install httpd
+          yum:
+            name: httpd
+            state: present
+        - name: start httpd service
+          service: 
+            name: httpd
+            state: restarted
+      when: ansible_distribution == "CentOS"
+      become: yes
+
+      always: 
+        - debug: 
+            msg: "this task is under always section"
+        - lineinfile:
+             path: /etc/httpd/conf/httpd.conf
+             regexp: '^Listen'
+             insertafter: '^#Listen'
+             line: Listen 90
+      when: ansible_distribution == "CentOS"
+      become: yes
+

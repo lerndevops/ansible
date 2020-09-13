@@ -1,0 +1,10 @@
+- hosts: t-node1
+  become: yes
+  tasks: 
+    - shell: systemctl status cron
+
+    - service: 
+        name: cron
+        state: started
+      register: out
+      changed_when: "'started' in out.state"

@@ -1,0 +1,25 @@
+- name: PLAY1
+  hosts: web
+  become: yes
+  tasks:
+    - name: copy file
+      copy:
+        src: /tmp/new.txt
+        dest: /tmp
+        mode: "0600"
+        owner: devops
+        group: devops
+    - name: create dir
+      file:
+        path: /opt/deloitte
+        state: directory
+        mode: "0400"
+        owner: devops
+        group: botuser
+
+- hosts: app
+  become: yes
+  tasks: 
+    - service:
+        name: cron
+        state: restarted
