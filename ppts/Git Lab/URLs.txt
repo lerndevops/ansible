@@ -1,0 +1,5 @@
+https://www.tutorialspoint.com/ansible/ansible_troubleshooting.htm
+
+https://www.bevuta.com/en/blog/continuous-delivery-with-gitlab-ci-and-ansible-part-1/
+
+https://www.bevuta.com/en/blog/continuous-delivery-with-gitlab-ci-and-ansible-part-2/

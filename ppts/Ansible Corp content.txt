@@ -1,0 +1,52 @@
+day 1 
+
+
+1) introduction to Ansible 1 hr
+2) onboarding ( installation & setup ) & Architecture 1hr + 0.5 
+3) Ansible Terminology 0.5
+4) ansible adhoc command 1 hr + 0.5
+	key based authentication
+	password based authentication
+5) Ansible Facts 0.5
+6) Ansible Config file 0.5
+7) Ansible Inventory 1 hr
+
+day 2 
+	start with config & inventory practice 
+8) introduction to Ansible modules 1 hr
+9) introduction to playbooks / handlers 1hr + 6 hours
+
+
+-------------------------------------
+
+day 3
+10) introduction to ansible variables 1 hr + 2 hours
+11) introduction to ansible roles 1 hr + 4 hours
+12) introcution ansible galaxy 1 hr + 1 hr
+13) intoduciton to ansible vault 1hr + 1 hr
+
+
+
+
+day 4
+14) Asnibel CMDB & custom facts 1 hr + 2hours
+15) introduction to Tower / AWX 1.5 hr + 4 hours
+16) Integration with GitLAb
+
+trouble shooting ( 2 hours ) 
+
+
+
+
+
+
+
+
+Handling Errors in a Playbook
+
+Configuring Parallelism
+Troubleshoot Playbooks
+Troubleshoot managed hosts
+
+
+

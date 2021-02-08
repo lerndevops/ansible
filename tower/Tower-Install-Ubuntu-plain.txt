@@ -1,0 +1,30 @@
+apt-get install software-properties-common
+apt-add-repository ppa:ansible/ansible
+
+apt-get update
+apt-get install ansible
+
+apt-get update
+sudo apt-get install postgresql postgresql-contrib
+
+mkdir -p /var/lib/postgresql/9.4/main
+mkdir -p /etc/postgresql/9.4/main
+
+
+Download Ansible Tower  https://www.ansible.com/products/tower/trial
+
+tar xvzf ansible-tower-setup-latest.tar.gz
+cd ansible-tower-setup-<tower_version>
+vi inventory & update admin_password, pg_password, rabbitmq_password ; save & exit
+
+./setup.sh
+
+gpg --import KEYS
+sudo apt-get update
+
+create credential
+create inventory
+create project
+create template ( job )
+
+

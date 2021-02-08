@@ -1,0 +1,91 @@
+https://www.youtube.com/watch?v=34u4wbeEYEo&list=PLaFCDlD-mVOlnL0f9rl3jyOHNdHU--vlJ
+
+===========================================================
+
+ # Linux x86-64
+ sudo wget -O /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64
+
+sudo useradd --comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bash
+vi /etc/sudoers ; gitlab-runner ALL=(ALL) NOPASSWD: ALL
+
+sudo gitlab-runner install --user=gitlab-runner --working-directory=/home/gitlab-runner
+sudo gitlab-runner start
+
+
+========================================
+
+sudo gitlab-runner register
+co-ordinator https://gitlab.com/
+git lab ci token -- copy from the project CI/CD settings
+enter description
+enter the tag required (stage,build,qa,release,ansible)
+whether to run untagged builds : false
+
+whether to lock the Runner to current project: true/false
+enter the executor: docker shell k8s etc.. (choose as per the requirement )
+
+=====================================================
+
+git lab registry
+
+=====================================================
+
+
+stages:
+    - build
+    - test
+
+build:
+    stage: build
+    script:
+       - echo "build stage"
+       - mkdir build
+       - touch build/test.txt
+    artifacts:
+        paths:
+           - build/
+    tags:
+       - ansible
+
+test:
+    stage: test
+    script:
+       - echo "testing"
+       - test -f "build/test.txt"
+
+======================================================
+
+git config --global user.name "sdevops"
+git config --global user.email "svadhyayadevops@gmail.com"
+
+mkdir mydemo
+git init
+git remote add origin https://gitlab.com/nareshmnvs/mydemo.git
+git add .
+git commit -m "new project"
+git push -u origin master
+
+========================================================
+
+stages:
+    - build
+    - test
+
+build:
+    stage: build
+    script:
+       - echo "build stage"
+       - mkdir build
+       - touch build/test.txt
+    artifacts:
+        paths:
+           - build/
+    tags:
+       - ansible
+
+test:
+    stage: test
+    script:
+       - echo "testing"
+    tags: 
+       - ansible

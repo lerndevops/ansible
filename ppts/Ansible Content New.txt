@@ -1,0 +1,67 @@
+before starting with Ansible 
+	configuration Management ?
+	change  management ?
+	
+introduction to Ansible & Architecture
+
+Ansible Setup
+	Install Ansible
+	configure authetications
+		password based authetication
+		key based authetication
+		
+Core Components of Ansible
+	inventories
+	modules
+	variables
+	Facts
+	ad-hoc
+	Plays
+	Playbooks
+	Configuration Files
+
+Ad-Hoc Ansible Commands & use cases
+	shell commands
+	file transfers
+	gathering facts
+	managing packages
+
+Inventory Management & about Ansbile Configuration File
+	Inventory Essentials
+	Inventory Variables
+	dynamic inventory
+	ansible Config file
+
+Ansible Plays and Playbooks
+	Ansible YAML Basics
+	Introduction to Playbooks and Common Modules
+	Create Playbooks to Configure Systems to a Specified State
+	Use Variables to Retrieve the Results of Running Commands
+	Use Conditionals to Control Play Execution 
+	Use loops in playbooks
+	handler tasks in playbooks
+	Selectively Run Specific Tasks In Playbooks Using Tags
+	Templates to Create Customized Configuration Files
+	Exception handling in Playbook block/rescue/always
+
+Ansible Roles & galaxy
+	create new role
+	Utilizing Roles in Playbook
+	Breaking a Playbook into a Role
+	download a role from galaxy & use
+	
+Ansible Variables, variable precedence & Facts
+Asnible CMDB & custom facts
+Ansible Vault to Protect Sensitive Data
+
+Ansible Tower
+	Introduction to Ansible Tower
+	Install Ansible Tower / AWX
+	Working with Ansible Tower
+
+miscellaneous
+	Perform a dry-run
+	Parallelism in Ansible
+	Common Playbook Issues
+	Finding Documentation
+
